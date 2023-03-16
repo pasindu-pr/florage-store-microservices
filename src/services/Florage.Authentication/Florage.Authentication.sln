@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Florage.Authentication", "Florage.Authentication.csproj", "{ACEB0184-515C-43BB-98C3-AC3833C0F512}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACEB0184-515C-43BB-98C3-AC3833C0F512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACEB0184-515C-43BB-98C3-AC3833C0F512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACEB0184-515C-43BB-98C3-AC3833C0F512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACEB0184-515C-43BB-98C3-AC3833C0F512}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BBBED66-D62E-4EF6-B4D5-A6300C17CDA4}
+	EndGlobalSection
+EndGlobal
