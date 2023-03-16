@@ -45,5 +45,19 @@ namespace Florage.Authentication.Controllers
 
             return BadRequest(tokenResponse);
         }
+
+        [HttpPost]
+        [Route("verify")]
+        public IActionResult VerifyToken(string token)
+        {
+            bool tokenValidationResult = _userService.ValidateToken(token);
+
+            if (tokenValidationResult)
+            {
+                return Ok();
+            }
+
+            return Unauthorized();
+        }
     }
 }

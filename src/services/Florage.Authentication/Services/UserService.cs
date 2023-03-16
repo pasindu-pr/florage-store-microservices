@@ -60,8 +60,8 @@ namespace Florage.Authentication.Services
             IdentityResult identityResult = await _userManager.CreateAsync(user, userRegisterDto.Password);
             return identityResult;
         }
-
-        public JwtSecurityToken GetToken(List<Claim> authClaims)
+        
+        private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
@@ -74,6 +74,34 @@ namespace Florage.Authentication.Services
                 );
 
             return token;
+        }
+
+        public bool ValidateToken(string token)
+        {
+            if (token == null)
+                return false;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidIssuer = _configuration["Jwt:ValidIssuer"],
+                    ValidateAudience = false,
+                    ValidAudience = _configuration["Jwt:ValidAudience"], 
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken); 
+                
+                return true;
+            }
+            catch
+            { 
+                return false;
+            }
         }
     }
 }
