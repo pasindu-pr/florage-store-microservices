@@ -40,7 +40,7 @@ namespace Florage.Shared.Repositories
             return await dbCollection.Find(filter).ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(string id)
         {
             return await dbCollection.Find(filterBuilder.Eq("Id", id)).FirstOrDefaultAsync();
         }

@@ -9,7 +9,7 @@ namespace Florage.Shared.Contracts
         Task<IReadOnlyCollection<T>> GetAllAsync();
         Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> filter);
         Task<T> FilterAsync(Expression<Func<T, bool>> filter);
-        Task<T> GetByIdAsync(Guid id);
+        Task<T> GetByIdAsync(string id);
         Task UpdateAsync(string id, T entity);
     }
 }
