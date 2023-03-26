@@ -46,7 +46,9 @@ namespace Florage.Shared.Repositories
         }
         
         public async Task UpdateAsync(string id,T entity)
-        { 
+        {
+            Console.WriteLine("Update");
+            Console.WriteLine("Update");
             await dbCollection.ReplaceOneAsync(filterBuilder.Eq("Id", id), entity);
         }
  
