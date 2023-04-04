@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Florage.Shared.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : class
     {
         private readonly IMongoCollection<T>  dbCollection;
         private readonly FilterDefinitionBuilder<T> filterBuilder = Builders<T>.Filter;

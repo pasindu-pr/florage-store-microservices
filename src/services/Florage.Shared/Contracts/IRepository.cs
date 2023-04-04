@@ -1,8 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using Florage.Shared.Models;
+using System.Linq.Expressions;
 
 namespace Florage.Shared.Contracts
 {
-    public interface IRepository<T> where T : class 
+    public interface IRepository<T> where T : class
     {
         Task CreateAsync(T entity);
         Task DeleteAsync(string id);
