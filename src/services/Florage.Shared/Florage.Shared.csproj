@@ -4,8 +4,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<RepositoryUrl>https://github.com/PasinduPrabhashitha/Florage-Store-Microservices.git</RepositoryUrl>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
