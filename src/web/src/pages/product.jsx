@@ -7,6 +7,12 @@ import df from "../assets/images/icons/dairy-free.avif"
 import vg from "../assets/images/icons/carrots.png"
 import pl from "../assets/images/icons/paleo-diet.png"
 import or from "../assets/images/icons/organic.png"
+import pd from "../assets/images/products/product1.jpg"
+import pd2 from "../assets/images/products/product2.jpg"
+import pd3 from "../assets/images/products/product3.jpg"
+import pd4 from "../assets/images/products/product4.jpg"
+import pd5 from "../assets/images/products/product5.jpg"
+import pd6 from "../assets/images/products/product6.jpg"
 
 
 const Product = () => {
@@ -118,14 +124,14 @@ const Product = () => {
 
     <div class="container grid grid-cols-2 gap-6">
         <div>
-            <img src="../assets/images/products/product1.jpg" alt="product" class="w-full"/>
+            <img src={pd} alt="product" class="w-full"/>
             <div class="grid grid-cols-5 gap-4 mt-4">
-                <img src="../assets/images/products/product2.jpg" alt="product2"
+                <img src={pd2} alt="product2"
                     class="w-full cursor-pointer border border-primary"/>
-                <img src="../assets/images/products/product3.jpg" alt="product2" class="w-full cursor-pointer border"/>
-                <img src="../assets/images/products/product4.jpg" alt="product2" class="w-full cursor-pointer border"/>
-                <img src="../assets/images/products/product5.jpg" alt="product2" class="w-full cursor-pointer border"/>
-                <img src="../assets/images/products/product6.jpg" alt="product2" class="w-full cursor-pointer border"/>
+                <img src={pd3} alt="product2" class="w-full cursor-pointer border"/>
+                <img src={pd4} alt="product2" class="w-full cursor-pointer border"/>
+                <img src={pd5} alt="product2" class="w-full cursor-pointer border"/>
+                <img src={pd6} alt="product2" class="w-full cursor-pointer border"/>
             </div>
         </div>
 
@@ -266,7 +272,7 @@ const Product = () => {
         <div class="grid grid-cols-4 gap-6">
             <div class="bg-white shadow rounded overflow-hidden group">
                 <div class="relative">
-                    <img src="../assets/images/products/product1.jpg" alt="product 1" class="w-full"/>
+                    <img src={pd} alt="product 1" class="w-full"/>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
                         <a href="#"
@@ -307,7 +313,7 @@ const Product = () => {
             </div>
             <div class="bg-white shadow rounded overflow-hidden group">
                 <div class="relative">
-                    <img src="../assets/images/products/product4.jpg" alt="product 1" class="w-full"/>
+                    <img src={pd4} alt="product 1" class="w-full"/>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
                         <a href="#"
@@ -348,7 +354,7 @@ const Product = () => {
             </div>
             <div class="bg-white shadow rounded overflow-hidden group">
                 <div class="relative">
-                    <img src="../assets/images/products/product2.jpg" alt="product 1" class="w-full"/>
+                    <img src={pd2} alt="product 1" class="w-full"/>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
                         <a href="#"
@@ -389,7 +395,7 @@ const Product = () => {
             </div>
             <div class="bg-white shadow rounded overflow-hidden group">
                 <div class="relative">
-                    <img src="../assets/images/products/product3.jpg" alt="product 1" class="w-full"/>
+                    <img src={pd3} alt="product 1" class="w-full"/>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
                         <a href="#"
