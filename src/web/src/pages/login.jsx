@@ -3,7 +3,7 @@ import md from "../assets/images/methods.png"
 import logo from "../assets/images/logo.svg";
 
 
-const Account = () => {
+const Login = () => {
   return <div>
 
 <div class="container flex items-center justify-between">
@@ -236,4 +236,4 @@ const Account = () => {
   </div>;
 };
 
-export default Account;
+export default Login;
