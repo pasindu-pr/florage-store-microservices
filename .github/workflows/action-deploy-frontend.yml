@@ -6,7 +6,12 @@ on:
       - src/web/**
     branches:
       - master
-  workflow_dispatch:
+  pull_request:
+    paths:
+      - src/web/**
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - master
 
 jobs:
   build_and_deploy:
