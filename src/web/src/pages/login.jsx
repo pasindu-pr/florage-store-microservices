@@ -1,6 +1,14 @@
 import React from "react";
 import md from "../assets/images/methods.png"
 import logo from "../assets/images/logo.svg";
+import ss from "../assets/images/icons/vegan.png";
+import sp from "../assets/images/icons/gluten-free.jpg";
+import sd from "../assets/images/icons/delivery-van.svg"
+import sh from "../assets/images/icons/service-hours.svg"
+import df from "../assets/images/icons/dairy-free.avif"
+import vg from "../assets/images/icons/carrots.png"
+import pl from "../assets/images/icons/paleo-diet.png"
+import or from "../assets/images/icons/organic.png"
 
 
 const Login = () => {
