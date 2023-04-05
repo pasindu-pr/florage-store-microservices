@@ -9,7 +9,7 @@ namespace Florage.Shared.Configurations
 {
     public static class PersistanceConfigurations
     {
-        public static IServiceCollection PersistanceServicesRegistration(this IServiceCollection services)
+        public static IServiceCollection AddMongoDb(this IServiceCollection services)
         {  
             services.AddSingleton(serviceProvider =>
             {
