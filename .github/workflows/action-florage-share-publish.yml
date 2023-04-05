@@ -3,15 +3,10 @@ name: Action to build and publish the shared project as a nuget package to githu
 on:
   push:
     paths:
-      - src/web/**
+      - src/services/Florage.Shared/**
     branches:
       - master
-  pull_request:
-    paths:
-      - src/web/**
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - master
+  workflow_dispatch:
       
 jobs:
   build:
