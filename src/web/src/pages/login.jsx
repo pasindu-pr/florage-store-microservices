@@ -1,13 +1,6 @@
 import React from "react";
-import logo from "../assets/images/logo.svg";
-import sf from "../assets/images/icons/sofa.svg"
-import tr from "../assets/images/icons/terrace.svg"
-import bd from "../assets/images/icons/bed.svg"
-import of from "../assets/images/icons/office.svg"
-import cf from "../assets/images/icons/outdoor-cafe.svg"
-import bd2 from "../assets/images/icons/bed-2.svg"
-import avatar from "../assets/images/avatar.png"
 import md from "../assets/images/methods.png"
+import logo from "../assets/images/logo.svg";
 
 
 const Account = () => {
@@ -65,190 +58,103 @@ const Account = () => {
                 </span>
                 <span class="capitalize ml-2 text-white">All Categories</span>
 
-
+                
                 <div
                     class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible">
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src={sf} alt="sofa" class="w-5 h-5 object-contain"/>
-                        <span class="ml-6 text-gray-600 text-sm">Sofa</span>
+                        <img src={ss} alt="sofa" class="w-5 h-5 object-contain"/>
+                        <span class="ml-6 text-gray-600 text-sm">vegan</span>
                     </a>
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src={tr} alt="terrace" class="w-5 h-5 object-contain"/>
-                        <span class="ml-6 text-gray-600 text-sm">Terarce</span>
+                        <img src={sp} alt="terrace" class="w-5 h-5 object-contain"/>
+                        <span class="ml-6 text-gray-600 text-sm">Glueten-Free</span>
                     </a>
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src={bd} alt="bed" class="w-5 h-5 object-contain"/>
-                        <span class="ml-6 text-gray-600 text-sm">Bed</span>
+                        <img src={df} alt="bed" class="w-5 h-5 object-contain"/>
+                        <span class="ml-6 text-gray-600 text-sm">Diary-Free</span>
                     </a>
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src={of} alt="office" class="w-5 h-5 object-contain"/>
-                        <span class="ml-6 text-gray-600 text-sm">office</span>
+                        <img src={vg} alt="office" class="w-5 h-5 object-contain"/>
+                        <span class="ml-6 text-gray-600 text-sm">Vegetarian</span>
                     </a>
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src={cf} alt="outdoor" class="w-5 h-5 object-contain"/>
-                        <span class="ml-6 text-gray-600 text-sm">Outdoor</span>
+                        <img src={pl} alt="outdoor" class="w-5 h-5 object-contain"/>
+                        <span class="ml-6 text-gray-600 text-sm">Paleo</span>
                     </a>
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src={bd2} alt="Mattress" class="w-5 h-5 object-contain"/>
-                        <span class="ml-6 text-gray-600 text-sm">Mattress</span>
+                        <img src={or} alt="Mattress" class="w-5 h-5 object-contain"/>
+                        <span class="ml-6 text-gray-600 text-sm">Organic</span>
                     </a>
                 </div>
             </div>
 
             <div class="flex items-center justify-between flex-grow pl-12">
                 <div class="flex items-center space-x-6 capitalize">
-                    <a href="../index.html" class="text-gray-200 hover:text-white transition">Home</a>
+                    <a href="index.html" class="text-gray-200 hover:text-white transition">Home</a>
                     <a href="pages/shop.html" class="text-gray-200 hover:text-white transition">Shop</a>
                     <a href="#" class="text-gray-200 hover:text-white transition">About us</a>
                     <a href="#" class="text-gray-200 hover:text-white transition">Contact us</a>
                 </div>
-                <a href="#" class="text-gray-200 hover:text-white transition">Login/Register</a>
+                <a href="pages/login.html" class="text-gray-200 hover:text-white transition">Login</a>
             </div>
         </div>
     </nav>
 
-    <div class="container py-4 flex items-center gap-3">
-        <a href="../index.html" class="text-primary text-base">
-            <i class="fa-solid fa-house"></i>
-        </a>
-        <span class="text-sm text-gray-400">
-            <i class="fa-solid fa-chevron-right"></i>
-        </span>
-        <p class="text-gray-600 font-medium">Account</p>
-    </div>
+    <div class="contain py-16">
+        <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
+            <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
+            <p class="text-gray-600 mb-6 text-sm">
+                welcome back customer
+            </p>
+            <form action="#" method="post" autocomplete="off">
+                <div class="space-y-2">
+                    <div>
+                        <label for="email" class="text-gray-600 mb-2 block">Email address</label>
+                        <input type="email" name="email" id="email"
+                            class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                            placeholder="youremail.@domain.com"/>
+                    </div>
+                    <div>
+                        <label for="password" class="text-gray-600 mb-2 block">Password</label>
+                        <input type="password" name="password" id="password"
+                            class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                            placeholder="*******"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" name="remember" id="remember"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+                        <label for="remember" class="text-gray-600 ml-3 cursor-pointer">Remember me</label>
+                    </div>
+                    <a href="#" class="text-primary">Forgot password</a>
+                </div>
+                <div class="mt-4">
+                    <button type="submit"
+                        class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">Login</button>
+                </div>
+            </form>
 
-    <div class="container grid grid-cols-12 items-start gap-6 pt-4 pb-16">
+            
+            <div class="mt-6 flex justify-center relative">
+                <div class="text-gray-600 uppercase px-3 bg-white z-10 relative">Or login with</div>
+                <div class="absolute left-0 top-3 w-full border-b-2 border-gray-200"></div>
+            </div>
+            <div class="mt-4 flex gap-4">
+                <a href="#"
+                    class="w-1/2 py-2 text-center text-white bg-blue-800 rounded uppercase font-roboto font-medium text-sm hover:bg-blue-700">facebook</a>
+                <a href="#"
+                    class="w-1/2 py-2 text-center text-white bg-red-600 rounded uppercase font-roboto font-medium text-sm hover:bg-red-500">google</a>
+            </div>
+           
 
-<div class="col-span-3">
-    <div class="px-4 py-3 shadow flex items-center gap-4">
-        <div class="flex-shrink-0">
-            <img src={avatar} alt="profile"
-                class="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover"/>
-        </div>
-        <div class="flex-grow">
-            <p class="text-gray-600">Hello,</p>
-            <h4 class="text-gray-800 font-medium">John Doe</h4>
-        </div>
-    </div>
-
-    <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
-        <div class="space-y-1 pl-8">
-            <a href="#" class="relative text-primary block font-medium capitalize transition">
-                <span class="absolute -left-8 top-0 text-base">
-                    <i class="fa-regular fa-address-card"></i>
-                </span>
-                Manage account
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                Profile information
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                Manage addresses
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                Change password
-            </a>
-        </div>
-
-        <div class="space-y-1 pl-8 pt-4">
-            <a href="#" class="relative hover:text-primary block font-medium capitalize transition">
-                <span class="absolute -left-8 top-0 text-base">
-                    <i class="fa-solid fa-box-archive"></i>
-                </span>
-                My order history
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                My returns
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                My Cancellations
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                My reviews
-            </a>
-        </div>
-
-        <div class="space-y-1 pl-8 pt-4">
-            <a href="#" class="relative hover:text-primary block font-medium capitalize transition">
-                <span class="absolute -left-8 top-0 text-base">
-                    <i class="fa-regular fa-credit-card"></i>
-                </span>
-                Payment methods
-            </a>
-            <a href="#" class="relative hover:text-primary block capitalize transition">
-                voucher
-            </a>
-        </div>
-
-        <div class="space-y-1 pl-8 pt-4">
-            <a href="#" class="relative hover:text-primary block font-medium capitalize transition">
-                <span class="absolute -left-8 top-0 text-base">
-                    <i class="fa-regular fa-heart"></i>
-                </span>
-                My wishlist
-            </a>
-        </div>
-
-        <div class="space-y-1 pl-8 pt-4">
-            <a href="#" class="relative hover:text-primary block font-medium capitalize transition">
-                <span class="absolute -left-8 top-0 text-base">
-                    <i class="fa-regular fa-arrow-right-from-bracket"></i>
-                </span>
-                Logout
-            </a>
-        </div>
-
-    </div>
-</div>
-
-
-
-<div class="col-span-9 grid grid-cols-3 gap-4">
-
-    <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="font-medium text-gray-800 text-lg">Personal Profile</h3>
-            <a href="#" class="text-primary">Edit</a>
-        </div>
-        <div class="space-y-1">
-            <h4 class="text-gray-700 font-medium">John Doe</h4>
-            <p class="text-gray-800">example@mail.com</p>
-            <p class="text-gray-800">0811 8877 988</p>
+            <p class="mt-4 text-center text-gray-600">Don't have account? <a href="register.html"
+                    class="text-primary">Register
+                    now</a></p>
         </div>
     </div>
 
-    <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="font-medium text-gray-800 text-lg">Shipping address</h3>
-            <a href="#" class="text-primary">Edit</a>
-        </div>
-        <div class="space-y-1">
-            <h4 class="text-gray-700 font-medium">John Doe</h4>
-            <p class="text-gray-800">Medan, North Sumatera</p>
-            <p class="text-gray-800">20371</p>
-            <p class="text-gray-800">0811 8877 988</p>
-        </div>
-    </div>
-
-    <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="font-medium text-gray-800 text-lg">Billing address</h3>
-            <a href="#" class="text-primary">Edit</a>
-        </div>
-        <div class="space-y-1">
-            <h4 class="text-gray-700 font-medium">John Doe</h4>
-            <p class="text-gray-800">Medan, North Sumatera</p>
-            <p class="text-gray-800">20317</p>
-            <p class="text-gray-800">0811 8877 988</p>
-        </div>
-    </div>
-
-</div>
-
-
-</div>
-
-<footer class="bg-white pt-16 pb-12 border-t border-gray-100">
+    <footer class="bg-white pt-16 pb-12 border-t border-gray-100">
         <div class="container grid grid-cols-3">
             <div class="col-span-1 space-y-8 mr-2">
                 <img src={logo} alt="logo" class="w-30"/>
