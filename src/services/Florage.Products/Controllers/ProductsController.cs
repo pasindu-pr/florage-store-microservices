@@ -35,5 +35,19 @@ namespace Florage.Products.Controllers
             await _productsService.CreateAsync(productDto);
             return Ok();
         }
+
+        [HttpPut("id")]
+        public async Task<IActionResult> UpdateProductAsync(string id, UpdateProductDto updateProductDto)
+        {
+            await _productsService.UpdateAsync(id, updateProductDto);
+            return NoContent();
+        }
+
+        [HttpDelete("id")]
+        public async Task<IActionResult> DeleteProductAsync(string id)
+        {
+            await _productsService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }
