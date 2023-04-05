@@ -1,5 +1,4 @@
-﻿using Florage.Products.Dtos;
-using Florage.Products.Models;
+﻿using Florage.Products.Dtos; 
 
 namespace Florage.Products.Contracts
 {
@@ -8,5 +7,7 @@ namespace Florage.Products.Contracts
         Task CreateAsync(CreateProductDto productDto);
         Task<IReadOnlyCollection<GetProductDto>> GetAllAsync();
         Task<GetProductDto> GetByIdAsync(string id);
+        Task UpdateAsync(string productId, UpdateProductDto updateProductDto);
+        Task DeleteAsync(string productId);
     }
 }
