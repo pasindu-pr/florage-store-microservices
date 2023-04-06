@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Account, Homepage , Login , Product , Profile} from "./pages";
+import { Account, Homepage , Login , Product , Profile, Register} from "./pages";
 
 
 const router = createBrowserRouter([
@@ -28,6 +28,11 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile/>,
+  },
+
+  {
+    path: "/register",
+    element: <Register/>,
   },
 ]);
 
