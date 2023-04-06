@@ -8,7 +8,7 @@ import vg from "../assets/images/icons/carrots.png"
 import pl from "../assets/images/icons/paleo-diet.png"
 import or from "../assets/images/icons/organic.png"
 
-const Product = () => {
+const Register = () => {
   return <div>
 
 <div class="container flex items-center justify-between">
@@ -252,4 +252,4 @@ const Product = () => {
   </div>;
 };
 
-export default Product;
+export default Register;
