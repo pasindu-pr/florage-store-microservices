@@ -6,12 +6,19 @@ namespace Florage.Shared.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        private readonly IMongoCollection<T>  dbCollection;
+        private IMongoCollection<T>  dbCollection;
         private readonly FilterDefinitionBuilder<T> filterBuilder = Builders<T>.Filter;
-
+        private IMongoDatabase _database;
+        
         public GenericRepository(IMongoDatabase database)
         {
-            dbCollection = database.GetCollection<T>("collection");
+            _database = database;
+            dbCollection = database.GetCollection<T>(typeof(T).Name);
+        }
+
+        public void SetCollectionName (string collectionName)
+        {
+            dbCollection = _database.GetCollection<T>(collectionName);
         }
          
         public async Task<T> CreateAsync(T entity)
