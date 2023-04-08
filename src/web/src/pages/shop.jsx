@@ -2,15 +2,6 @@ import React from "react";
 import logo from "../assets/images/logo.svg";
 import ss from "../assets/images/icons/vegan.png";
 import sp from "../assets/images/icons/gluten-free.jpg";
-import sd from "../assets/images/icons/delivery-van.svg"
-import sh from "../assets/images/icons/service-hours.svg"
-import mb from "../assets/images/icons/money-back.svg"
-import cat1 from "../assets/images/icons/vegan.png"
-import cat2 from "../assets/images/icons/gluten-free.jpg"
-import cat3 from "../assets/images/icons/dairy-free.avif"
-import cat4 from "../assets/images/icons/carrots.png"
-import cat5 from "../assets/images/icons/paleo-diet.png"
-import cat6 from "../assets/images/icons/organic.png"
 import df from "../assets/images/icons/dairy-free.avif"
 import vg from "../assets/images/icons/carrots.png"
 import pl from "../assets/images/icons/paleo-diet.png"
