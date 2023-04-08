@@ -6,10 +6,4 @@ import Profile from "./profile";
 import Register from "./register"
 import Checkout from "./checkout"
 
-export { Homepage };
-export {Account};
-export {Login};
-export {Product};
-export {Profile};
-export {Register};
-export {Checkout};
+export { Homepage , Account , Login , Product , Profile , Register , Checkout };
