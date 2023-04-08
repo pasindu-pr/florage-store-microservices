@@ -4,7 +4,7 @@ namespace Florage.Shared.Contracts
 {
     public interface IRepository<T> where T : class
     {
-        Task CreateAsync(T entity);
+        Task<T> CreateAsync(T entity);
         Task DeleteAsync(string id);
         Task<IReadOnlyCollection<T>> GetAllAsync();
         Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> filter);
