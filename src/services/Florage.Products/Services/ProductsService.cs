@@ -10,6 +10,7 @@ namespace Florage.Products.Services
     {
         private readonly IRepository<Product> _repository;
         private readonly IMapper _mapper;
+        private readonly string _customIdentifierAttribute = "ProductId";
 
         public ProductsService(IRepository<Product> genericRepository, IMapper mapper)
         {
@@ -20,12 +21,15 @@ namespace Florage.Products.Services
         public async Task CreateAsync(CreateProductDto productDto)
         {
             Product product = _mapper.Map<Product>(productDto);
+
+            // Generate custom product id
+            product.ProductId = Guid.NewGuid().ToString();
             await _repository.CreateAsync(product);
         }
 
         public async Task DeleteAsync(string productId)
         {
-            await _repository.DeleteAsync(productId);
+            await _repository.DeleteAsync(_customIdentifierAttribute, productId);
         }
 
         public async Task<IReadOnlyCollection<GetProductDto>> GetAllAsync()
@@ -37,7 +41,8 @@ namespace Florage.Products.Services
 
         public async Task<GetProductDto> GetByIdAsync(string id)
         {
-            Product product = await _repository.GetByIdAsync(id);
+            // Get product by custom product id
+            Product product = await _repository.GetOneAsync(_customIdentifierAttribute, id);
             GetProductDto mappedProduct = _mapper.Map<GetProductDto>(product);
             return mappedProduct;
         }
@@ -45,8 +50,11 @@ namespace Florage.Products.Services
         public async Task UpdateAsync(string productId,UpdateProductDto updateProductDto)
         {
             Product productToUpdate = _mapper.Map<Product>(updateProductDto);
-            productToUpdate.Id = productId;
-            await _repository.UpdateAsync(productId, productToUpdate);
+            Product product = await _repository.GetOneAsync(_customIdentifierAttribute, productId);
+            
+            productToUpdate.Id = product.Id;
+            productToUpdate.ProductId = productId;
+            await _repository.UpdateAsync(_customIdentifierAttribute, productId,productToUpdate);
         }
     }
 }
