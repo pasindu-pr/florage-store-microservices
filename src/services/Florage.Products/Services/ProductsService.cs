@@ -9,8 +9,7 @@ namespace Florage.Products.Services
     public class ProductsService : IProductsService
     {
         private readonly IRepository<Product> _repository;
-        private readonly IMapper _mapper;
-        private readonly string _customIdentifierAttribute = "ProductId";
+        private readonly IMapper _mapper; 
 
         public ProductsService(IRepository<Product> genericRepository, IMapper mapper)
         {
@@ -18,18 +17,17 @@ namespace Florage.Products.Services
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(CreateProductDto productDto)
+        public async Task<GetProductDto> CreateAsync(CreateProductDto productDto)
         {
-            Product product = _mapper.Map<Product>(productDto);
-
-            // Generate custom product id
-            product.ProductId = Guid.NewGuid().ToString();
-            await _repository.CreateAsync(product);
+            Product product = _mapper.Map<Product>(productDto); 
+            Product insertedProduct =  await _repository.CreateAsync(product);
+            GetProductDto insertedMappedProduct = _mapper.Map<GetProductDto>(insertedProduct);
+            return insertedMappedProduct;
         }
 
         public async Task DeleteAsync(string productId)
         {
-            await _repository.DeleteAsync(_customIdentifierAttribute, productId);
+            await _repository.DeleteAsync(productId);
         }
 
         public async Task<IReadOnlyCollection<GetProductDto>> GetAllAsync()
@@ -42,19 +40,17 @@ namespace Florage.Products.Services
         public async Task<GetProductDto> GetByIdAsync(string id)
         {
             // Get product by custom product id
-            Product product = await _repository.GetOneAsync(_customIdentifierAttribute, id);
+            Product product = await _repository.GetByIdAsync(id);
             GetProductDto mappedProduct = _mapper.Map<GetProductDto>(product);
             return mappedProduct;
         }
 
         public async Task UpdateAsync(string productId,UpdateProductDto updateProductDto)
         {
-            Product productToUpdate = _mapper.Map<Product>(updateProductDto);
-            Product product = await _repository.GetOneAsync(_customIdentifierAttribute, productId);
+            Product productToUpdate = _mapper.Map<Product>(updateProductDto); 
             
-            productToUpdate.Id = product.Id;
-            productToUpdate.ProductId = productId;
-            await _repository.UpdateAsync(_customIdentifierAttribute, productId,productToUpdate);
+            productToUpdate.Id = productId; 
+            await _repository.UpdateAsync(productId, productToUpdate);
         }
     }
 }
