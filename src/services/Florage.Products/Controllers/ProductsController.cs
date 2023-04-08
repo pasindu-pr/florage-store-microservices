@@ -32,8 +32,8 @@ namespace Florage.Products.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProductAsync(CreateProductDto productDto)
         {
-            await _productsService.CreateAsync(productDto);
-            return Ok();
+            GetProductDto insertedProduct = await _productsService.CreateAsync(productDto);
+            return new ObjectResult(insertedProduct) { StatusCode=StatusCodes.Status201Created};
         }
 
         [HttpPut("id")]
