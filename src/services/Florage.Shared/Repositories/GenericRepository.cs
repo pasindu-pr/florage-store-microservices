@@ -19,10 +19,10 @@ namespace Florage.Shared.Repositories
             await dbCollection.InsertOneAsync(entity);
         }
 
-        public async Task DeleteAsync(string attribute, string value)
+        public async Task DeleteAsync(string id)
         {
-            await dbCollection.DeleteOneAsync(filterBuilder.Eq(attribute, value));
-        } 
+            await dbCollection.DeleteOneAsync(filterBuilder.Eq("Id", id));
+        }
 
         public async Task<T> FilterAsync(Expression<Func<T, bool>> filter)
         {
@@ -42,17 +42,12 @@ namespace Florage.Shared.Repositories
         public async Task<T> GetByIdAsync(string id)
         {
             return await dbCollection.Find(filterBuilder.Eq("Id", id)).FirstOrDefaultAsync();
-        }
+        } 
 
-        public async Task<T> GetOneAsync(string attribute, string value)
+        public async Task UpdateAsync(string id, T entity)
         {
-            return await dbCollection.Find(filterBuilder.Eq(attribute, value)).FirstOrDefaultAsync();
+            await dbCollection.ReplaceOneAsync(filterBuilder.Eq("Id", id), entity);
         }
 
-        public async Task UpdateAsync(string attribute, string value,T entity)
-        { 
-            await dbCollection.ReplaceOneAsync(filterBuilder.Eq(attribute, value), entity);
-        }
- 
     }
 }
