@@ -14,9 +14,10 @@ namespace Florage.Shared.Repositories
             dbCollection = database.GetCollection<T>("collection");
         }
          
-        public async Task CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await dbCollection.InsertOneAsync(entity);
+            return entity;
         }
 
         public async Task DeleteAsync(string id)
