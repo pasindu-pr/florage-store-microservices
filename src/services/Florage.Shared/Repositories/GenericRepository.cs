@@ -1,5 +1,4 @@
 ﻿using Florage.Shared.Contracts;
-using Florage.Shared.Models;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
@@ -44,7 +43,12 @@ namespace Florage.Shared.Repositories
         {
             return await dbCollection.Find(filterBuilder.Eq("Id", id)).FirstOrDefaultAsync();
         }
-        
+
+        public async Task<T> GetOneAsync(string attribute, string value)
+        {
+            return await dbCollection.Find(filterBuilder.Eq(attribute, value)).FirstOrDefaultAsync();
+        }
+
         public async Task UpdateAsync(string id,T entity)
         { 
             await dbCollection.ReplaceOneAsync(filterBuilder.Eq("Id", id), entity);
