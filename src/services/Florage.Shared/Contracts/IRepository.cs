@@ -1,5 +1,4 @@
-﻿using Florage.Shared.Models;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Florage.Shared.Contracts
 {
@@ -11,6 +10,7 @@ namespace Florage.Shared.Contracts
         Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> filter);
         Task<T> FilterAsync(Expression<Func<T, bool>> filter);
         Task<T> GetByIdAsync(string id);
+        Task<T> GetOneAsync(string attribute, string value);
         Task UpdateAsync(string id, T entity);
     }
 }
