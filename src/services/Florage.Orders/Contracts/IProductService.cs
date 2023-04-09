@@ -6,5 +6,7 @@ namespace Florage.Orders.Contracts
     {
         Task<IReadOnlyCollection<GetProductDto>> GetAllAsync();
         Task<GetProductDto> CreateAsync(CreateProductDto productDto);
+        Task UpdateAsync(string productId, UpdateProductDto updateProductDto);
+        Task DeleteAsync(string productId);
     }
 }

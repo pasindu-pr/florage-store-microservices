@@ -2,6 +2,7 @@
 using Florage.Orders.Contracts;
 using Florage.Orders.Dtos;
 using Florage.Orders.Models;
+using Florage.Orders.Utils;
 using Florage.Shared.Contracts;
 
 namespace Florage.Orders.Services
@@ -14,7 +15,7 @@ namespace Florage.Orders.Services
         public ProductsService(IRepository<Product> repository, IMapper mapper)
         {
             _repository = repository;
-            _repository.SetCollectionName("Products");
+            _repository.SetCollectionName(Constants.ProductsCollectionName);
             _mapper = mapper;
         } 
 
@@ -27,11 +28,24 @@ namespace Florage.Orders.Services
             return getProductDto;
         }
 
+        public async Task DeleteAsync(string productId)
+        {
+            await _repository.DeleteAsync(productId);
+        }
+
         public async Task<IReadOnlyCollection<GetProductDto>> GetAllAsync()
         {
             IReadOnlyCollection<Product> products = await _repository.GetAllAsync();
             IReadOnlyCollection<GetProductDto> getProducts = _mapper.Map<IReadOnlyCollection<GetProductDto>>(products);
             return getProducts;
+        }
+
+        public async Task UpdateAsync(string productId, UpdateProductDto updateProductDto)
+        {
+            Product productToUpdate = _mapper.Map<Product>(updateProductDto);
+
+            productToUpdate.Id = productId;
+            await _repository.UpdateAsync(productId, productToUpdate);
         }
     }
 }
