@@ -3,6 +3,7 @@ import logo from "../assets/images/logo.svg";
 import ss from "../assets/images/icons/vegan.png";
 import sp from "../assets/images/icons/gluten-free.jpg";
 import df from "../assets/images/icons/dairy-free.avif"
+import md from "../assets/images/methods.png"
 import vg from "../assets/images/icons/carrots.png"
 import pl from "../assets/images/icons/paleo-diet.png"
 import or from "../assets/images/icons/organic.png"
@@ -241,19 +242,19 @@ const Shop = () => {
                             <input type="radio" name="color" id="red" class="hidden"/>
                             <label for="red"
                                 class="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
-                                style="background-color: #fc3d57;"></label>
+                                ></label>
                         </div>
                         <div class="color-selector">
                             <input type="radio" name="color" id="black" class="hidden"/>
                             <label for="black"
                                 class="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
-                                style="background-color: #000;"></label>
+                                ></label>
                         </div>
                         <div class="color-selector">
                             <input type="radio" name="color" id="white" class="hidden"/>
                             <label for="white"
                                 class="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
-                                style="background-color: #fff;"></label>
+                               ></label>
                         </div>
 
                     </div>
