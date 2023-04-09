@@ -28,5 +28,18 @@ namespace Florage.Orders.Controllers
             await _orderService.CreateAsync(orderDto);
             return Ok();
         }
+
+        [HttpPatch]
+        public async Task<ActionResult> UpdatePaymentAsync(string orderId)
+        {
+            try
+            {
+                await _orderService.SetOrderAsPaidAsync(orderId);
+                return Ok();
+            }catch(KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
     }
 }

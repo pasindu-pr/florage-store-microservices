@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Florage.Orders.Dtos;
 using Florage.Orders.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace Florage.Orders.Profiles
 {
@@ -15,6 +13,7 @@ namespace Florage.Orders.Profiles
             CreateMap<OrderProduct, OrderProductDto>().ReverseMap();
             CreateMap<Product, GetProductDto>().ReverseMap();
             CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
         }
     }
 }

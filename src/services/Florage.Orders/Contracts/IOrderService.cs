@@ -5,7 +5,7 @@ namespace Florage.Orders.Contracts
     public interface IOrderService
     {
         Task CreateAsync(CreateOrderDto orderDto);
-        Task<IReadOnlyCollection<GetOrderDto>> GetAllOrdersAsync(); 
-        
+        Task<IReadOnlyCollection<GetOrderDto>> GetAllOrdersAsync();
+        Task SetOrderAsPaidAsync(string orderId);        
     }
 }
