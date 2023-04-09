@@ -54,6 +54,17 @@ namespace Florage.Orders.Services
             IReadOnlyCollection<Order> orders = await _repository.GetAllAsync();
             IReadOnlyCollection<GetOrderDto> getOrders = _mapper.Map<IReadOnlyCollection<GetOrderDto>>(orders);
             return getOrders;
-        } 
+        }
+
+        public async Task SetOrderAsPaidAsync(string orderId)
+        {
+            Order order = await _repository.GetByIdAsync(orderId);
+
+            if (order == null)
+                throw new KeyNotFoundException();
+
+            order.Status = nameof(OrderStatus.Processing);
+            await _repository.UpdateAsync(orderId, order);
+        }
     }
 }
