@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Florage.Inventory", "Florage.Inventory.csproj", "{4C85BB6A-D48A-4FB7-A5DD-535AF8BD69CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C85BB6A-D48A-4FB7-A5DD-535AF8BD69CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C85BB6A-D48A-4FB7-A5DD-535AF8BD69CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C85BB6A-D48A-4FB7-A5DD-535AF8BD69CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C85BB6A-D48A-4FB7-A5DD-535AF8BD69CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60875B14-849C-41B4-9405-D94B3F669EF7}
+	EndGlobalSection
+EndGlobal
