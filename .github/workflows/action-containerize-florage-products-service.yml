@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: pasinduprabhashitha/florage-microservices-products-service
+  IMAGE_NAME: pasinduprabhashitha/florage-products-service
 
 jobs:
   build-and-push-image:
