@@ -1,16 +1,16 @@
-name: Create and publish a Docker image for inventory service
+name: Create and publish a Docker image for orders service
 
 on:
   push:
     paths:
-      - src/services/Florage.Inventory/**
+      - src/services/Florage.Orders/**
     branches:
       - master
   workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: pasinduprabhashitha/florage-inventory-service
+  IMAGE_NAME: pasinduprabhashitha/florage-orders-service
 
 jobs:
   build-and-push-image:
@@ -41,6 +41,6 @@ jobs:
         with:
           context: .
           push: true
-          file: ./src/services/Florage.Inventory/Dockerfile
+          file: ./src/services/Florage.Orders/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
