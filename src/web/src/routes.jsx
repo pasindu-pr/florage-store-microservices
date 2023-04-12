@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Account, Homepage , Login , Product , Profile, Register} from "./pages";
+import { Account, Homepage , Login , Product , Profile , Register , Checkout , Shop} from "./pages";
 
 
 const router = createBrowserRouter([
@@ -33,6 +33,16 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register/>,
+  },
+
+  {
+    path: "/checkout",
+    element: <Checkout/>,
+  },
+
+  {
+    path: "/shop",
+    element: <Shop/>,
   },
 ]);
 
