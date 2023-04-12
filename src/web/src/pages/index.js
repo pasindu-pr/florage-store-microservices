@@ -4,10 +4,7 @@ import Login from "./login";
 import Product from "./product";
 import Profile from "./profile";
 import Register from "./register"
+import Checkout from "./checkout"
+import Shop from "./shop"
 
-export { Homepage };
-export {Account};
-export {Login};
-export {Product};
-export {Profile};
-export {Register};
+export { Homepage , Account , Login , Product , Profile , Register , Checkout , Shop};
