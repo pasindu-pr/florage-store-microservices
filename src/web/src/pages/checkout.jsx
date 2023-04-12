@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/images/logo.svg";
 import ss from "../assets/images/icons/vegan.png";
 import sp from "../assets/images/icons/gluten-free.jpg";
+import md from "../assets/images/methods.png"
 import df from "../assets/images/icons/dairy-free.avif"
 import vg from "../assets/images/icons/carrots.png"
 import pl from "../assets/images/icons/paleo-diet.png"
