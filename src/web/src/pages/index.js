@@ -6,5 +6,6 @@ import Profile from "./profile";
 import Register from "./register"
 import Checkout from "./checkout"
 import Shop from "./shop"
+import AddProducts from "./addProducts"
 
-export { Homepage , Account , Login , Product , Profile , Register , Checkout , Shop};
+export { Homepage , Account , Login , Product , Profile , Register , Checkout , Shop, AddProducts};
