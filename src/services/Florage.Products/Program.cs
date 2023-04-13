@@ -9,10 +9,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductsService, ProductsService>();
-builder.Services.AddCors(policyBuilder =>
-    policyBuilder.AddDefaultPolicy(policy =>
-        policy.WithOrigins("*").AllowAnyHeader().AllowAnyHeader())
-);
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
 
@@ -22,6 +18,8 @@ app.UseSwagger();
 app.UseSwaggerUI(); 
 
 app.UseHttpsRedirection();
+
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.UseAuthorization();
 
