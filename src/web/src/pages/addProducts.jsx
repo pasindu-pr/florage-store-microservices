@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import axios from "axios";
 import logo from "../assets/images/logo.svg";
 import ss from "../assets/images/icons/vegan.png";
 import sp from "../assets/images/icons/gluten-free.jpg";
