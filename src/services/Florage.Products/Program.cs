@@ -11,6 +11,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductsService, ProductsService>();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
+AsyncMessagingConfigurations.AddRabbitMq(builder.Services);
 
 var app = builder.Build();
 

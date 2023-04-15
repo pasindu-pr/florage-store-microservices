@@ -4,6 +4,6 @@ namespace Florage.Shared.Contracts
 {
     public interface IRabbitMqService
     {
-        IConnection CreateChannel();
+        IConnection CreateConnection();
     }
 }
