@@ -14,20 +14,19 @@ namespace Florage.Shared.Services
             _configuration = configuration;
         }
 
-        public IConnection CreateChannel()
+        public IConnection CreateConnection()
         {
             RabbbitMQSettings? rabbbitMQSettings = _configuration.GetSection(nameof(RabbbitMQSettings)).Get<RabbbitMQSettings>();
 
-            ConnectionFactory connection = new ConnectionFactory()
+            ConnectionFactory connectionSettings = new ConnectionFactory()
             {
                 UserName = rabbbitMQSettings.Username,
                 Password = rabbbitMQSettings.Password,
                 HostName = rabbbitMQSettings.HostName
             };
-
-            connection.DispatchConsumersAsync = true;
-            var channel = connection.CreateConnection();
-            return channel;
+             
+            var connection = connectionSettings.CreateConnection();
+            return connection;
         }
     }
 }
