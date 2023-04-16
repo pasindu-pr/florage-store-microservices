@@ -9,12 +9,14 @@ namespace Florage.Inventory.Services
     public class ProductsService : IProductService
     {
         private readonly IRepository<Product> _repository;
-        private readonly IMapper _mapper; 
+        private readonly IMapper _mapper;
+        private readonly IProductsMessagingService _productsMessagingService;
 
-        public ProductsService(IRepository<Product> genericRepository, IMapper mapper)
+        public ProductsService(IRepository<Product> genericRepository, IMapper mapper, IProductsMessagingService productsMessagingService)
         {
             _repository = genericRepository;
             _mapper = mapper;
+            _productsMessagingService = productsMessagingService;
         }
 
         public async Task<GetProductDto> CreateAsync(CreateProductDto productDto)
@@ -22,6 +24,9 @@ namespace Florage.Inventory.Services
             Product product = _mapper.Map<Product>(productDto); 
             Product insertedProduct =  await _repository.CreateAsync(product);
             GetProductDto insertedMappedProduct = _mapper.Map<GetProductDto>(insertedProduct);
+
+            //Publish created product
+            _productsMessagingService.PublishCreatedProduct(insertedProduct);
             return insertedMappedProduct;
         }
 
