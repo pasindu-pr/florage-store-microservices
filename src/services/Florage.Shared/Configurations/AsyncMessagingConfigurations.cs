@@ -2,6 +2,7 @@
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Florage.Shared.Configurations
 {
@@ -11,9 +12,12 @@ namespace Florage.Shared.Configurations
         {
 
             RabbbitMQSettings? rabbbitMQSettings = configuration.GetSection(nameof(RabbbitMQSettings)).Get<RabbbitMQSettings>();
-
+            
             services.AddMassTransit(x =>
             {
+
+                x.AddConsumers(Assembly.GetEntryAssembly());
+                
                 x.UsingRabbitMq((ctx, config) =>
                 {
                     config.Host(rabbbitMQSettings.HostName, "/", c => {

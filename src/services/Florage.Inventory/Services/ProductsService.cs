@@ -22,7 +22,7 @@ namespace Florage.Inventory.Services
         public async Task<GetProductDto> CreateAsync(CreateProductDto productDto)
         {
             Product product = _mapper.Map<Product>(productDto); 
-            Product insertedProduct =  await _repository.CreateAsync(product);
+            Product insertedProduct = await _repository.CreateAsync(product);
             GetProductDto insertedMappedProduct = _mapper.Map<GetProductDto>(insertedProduct);
 
             //Publish created product
