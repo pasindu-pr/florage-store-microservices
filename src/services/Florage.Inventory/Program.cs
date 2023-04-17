@@ -9,11 +9,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductsService>();
-builder.Services.AddSingleton<IProductsMessagingService, ProductsMessagingService>();
+builder.Services.AddScoped<IProductsMessagingService, ProductsMessagingService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
-AsyncMessagingConfigurations.AddRabbitMq(builder.Services);
+AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
