@@ -23,7 +23,7 @@ namespace Florage.Inventory.Controllers
             return Ok(products);
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<GetProductDto>> GetProductByIdAsync(string id)
         {
             GetProductDto product = await _productService.GetByIdAsync(id);
@@ -37,14 +37,14 @@ namespace Florage.Inventory.Controllers
             return new ObjectResult(insertedProduct) { StatusCode = StatusCodes.Status201Created };
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProductAsync(string id, UpdateProductDto updateProductDto)
         {
             await _productService.UpdateAsync(id, updateProductDto);
             return NoContent();
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProductAsync(string id)
         {
             await _productService.DeleteAsync(id);
