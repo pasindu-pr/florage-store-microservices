@@ -1,4 +1,4 @@
-using Florage.Inventory.AsyncServices;
+using Florage.Inventory.AsyncServices.Producers;
 using Florage.Inventory.Contracts;
 using Florage.Inventory.Services;
 using Florage.Shared.Configurations;
@@ -18,7 +18,11 @@ AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.RoutePrefix = "api/inventory/docs";
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MY API");
+});
 
 app.UseHttpsRedirection();
 
