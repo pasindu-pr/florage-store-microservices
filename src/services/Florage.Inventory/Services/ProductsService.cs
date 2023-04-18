@@ -33,6 +33,7 @@ namespace Florage.Inventory.Services
         public async Task DeleteAsync(string productId)
         {
             await _repository.DeleteAsync(productId);
+            _productsMessagingService.PublishDeleteProduct(productId);
         }
 
         public async Task<IReadOnlyCollection<GetProductDto>> GetAllAsync()
@@ -56,6 +57,7 @@ namespace Florage.Inventory.Services
             
             productToUpdate.Id = productId; 
             await _repository.UpdateAsync(productId, productToUpdate);
+            _productsMessagingService.PublishUpdateProduct(productToUpdate);
         }
     }
 }
