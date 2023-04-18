@@ -12,7 +12,7 @@
     "Florage.Products": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "api/products/docs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -30,7 +30,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/products/docs",
       "publishAllPorts": true,
       "useSSL": true
     }

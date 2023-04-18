@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Florage.Inventory.Dtos;
 using Florage.Inventory.Models;
+using Florage.Shared.Dtos.Products;
 
 namespace Florage.Inventory.Profiles
 {
@@ -11,7 +12,8 @@ namespace Florage.Inventory.Profiles
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, GetProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
-            CreateMap<Product, PublishProductDto>().ReverseMap();
+            CreateMap<Product, PublishProductCreateDto>().ReverseMap();
+            CreateMap<Product, PublishProductUpdateDto>().ReverseMap();
         }
     }
 }
