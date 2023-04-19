@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-service
+  namespace: florage
+  labels:
+    app: payments-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments-service
+  template:
+    metadata:
+      labels:
+        app: payments-service
+    spec:
+      containers:
+        - name: payments-service
+          image: ghcr.io/pasinduprabhashitha/florage-payments-service:master
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: db-connection-secret
+                  key: mongo-connection-url
+      imagePullSecrets:
+        - name: github-cr-access-token-dockerconfigjson
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-service
+  namespace: florage
+spec:
+  selector:
+    app: payments-service
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 5003
+      targetPort: 80
