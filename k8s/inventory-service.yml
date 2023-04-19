@@ -18,6 +18,7 @@ spec:
       containers:
         - name: inventory-service
           image: ghcr.io/pasinduprabhashitha/florage-inventory-service:master
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           env:
