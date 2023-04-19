@@ -1,11 +1,10 @@
 ﻿using Florage.Payments.Contracts;
 using Florage.Payments.Dtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Florage.Payments.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/payments/orders")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -16,11 +15,11 @@ namespace Florage.Payments.Controllers
             _orderService = orderService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateOrderAsync(CreateOrderDto orderDto)
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyCollection<GetOrderDto>>> GetOrdersAsync()
         {
-            await _orderService.CreateOrderAsync(orderDto);
-            return Ok();
-        }
+            IReadOnlyCollection<GetOrderDto> orders = await _orderService.GetOrdersAsync();
+            return Ok(orders);
+        } 
     }
 }

@@ -24,5 +24,12 @@ namespace Florage.Payments.Services
             Order order = _mapper.Map<Order>(orderDto);
             await _repository.CreateAsync(order);
         }
+
+        public async Task<IReadOnlyCollection<GetOrderDto>> GetOrdersAsync()
+        {
+            IReadOnlyCollection<Order> orders = await _repository.GetAllAsync();
+            IReadOnlyCollection<GetOrderDto> mappedOrders = _mapper.Map<IReadOnlyCollection<GetOrderDto>>(orders);
+            return mappedOrders;
+        }
     }
 }
