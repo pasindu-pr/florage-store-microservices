@@ -22,6 +22,7 @@ namespace Florage.Products.Controllers
             return Ok(products);
         }
          
+        //fetch product by id
         [HttpGet("{id}")]
         public async Task<ActionResult<GetProductDto>> GetProductByIdAsync(string id)
         {
