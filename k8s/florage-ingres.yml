@@ -29,3 +29,11 @@ spec:
                 name: inventory-service
                 port:
                   number: 5001
+
+          - path: /api/orders
+            pathType: Prefix
+            backend:
+              service:
+                name: orders-service
+                port:
+                  number: 5002
