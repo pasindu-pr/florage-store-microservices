@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Florage.Orders.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/orders/products")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -20,13 +20,6 @@ namespace Florage.Orders.Controllers
         {
             IReadOnlyCollection<GetProductDto> products = await _productService.GetAllAsync();
             return Ok(products);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreateProductDto productDto)
-        {
-            await _productService.CreateAsync(productDto);
-            return Ok();
-        }
+        } 
     }
 }
