@@ -16,7 +16,8 @@ namespace Florage.Orders.Profiles
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             CreateMap<Product, PublishProductCreateDto>().ReverseMap();
-            CreateMap<CreateProductDto, PublishProductUpdateDto>().ReverseMap();
+            CreateMap<CreateProductDto, PublishProductCreateDto>().ReverseMap();
+            CreateMap<UpdateProductDto, PublishProductUpdateDto>().ReverseMap();
         }
     }
 }
