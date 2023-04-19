@@ -15,11 +15,14 @@ AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration
 
 var app = builder.Build();
 
-app.UseSwagger();
+app.UseSwagger(c =>
+{
+    c.RouteTemplate = "api/products/docs/swagger/{documentName}/swagger.json";
+});
 app.UseSwaggerUI(c =>
 {
     c.RoutePrefix = "api/products/docs";
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MY API");
+    c.SwaggerEndpoint("/api/products/docs/swagger/v1/swagger.json", "MY API");
 });
 
 app.UseHttpsRedirection();

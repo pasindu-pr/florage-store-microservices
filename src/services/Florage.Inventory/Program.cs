@@ -21,7 +21,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.RoutePrefix = "api/inventory/docs";
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MY API");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Inventory API");
 });
 
 app.UseHttpsRedirection();
