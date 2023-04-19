@@ -19,22 +19,22 @@ namespace Florage.Inventory.AsyncServices.Producers
             _publishEndpoint = publishEndpoint;
         }
 
-        public void PublishCreatedProduct(Product product)
+        public async void PublishCreatedProduct(Product product)
         {
             PublishProductCreateDto publishProductDto = _mapper.Map<PublishProductCreateDto>(product);
-            _publishEndpoint.Publish(publishProductDto);
+            await _publishEndpoint.Publish(publishProductDto);
         }
 
-        public void PublishUpdateProduct(Product product)
+        public async void PublishUpdateProduct(Product product)
         {
             PublishProductUpdateDto updateProduct = _mapper.Map<PublishProductUpdateDto>(product);
-            _publishEndpoint.Publish(updateProduct);
+            await _publishEndpoint.Publish(updateProduct);
         }
 
-        public void PublishDeleteProduct(string productId)
+        public async void PublishDeleteProduct(string productId)
         {
             PublishProductDeleteDto deleteProduct = new PublishProductDeleteDto { ProductId = productId };
-            _publishEndpoint.Publish(deleteProduct);
+            await _publishEndpoint.Publish(deleteProduct);
         }
     }
 }
