@@ -12,11 +12,19 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductService, ProductsService>();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
+AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwagger(c =>
+{
+    c.RouteTemplate = "api/orders/docs/swagger/{documentName}/swagger.json";
+});
+app.UseSwaggerUI(c =>
+{
+    c.RoutePrefix = "api/orders/docs";
+    c.SwaggerEndpoint("/api/orders/docs/swagger/v1/swagger.json", "Florage Orders API");
+});
 
 app.UseHttpsRedirection();
 
