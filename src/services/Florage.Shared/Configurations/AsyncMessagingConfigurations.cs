@@ -13,6 +13,7 @@ namespace Florage.Shared.Configurations
         {
 
             RabbbitMQSettings? rabbbitMQSettings = configuration.GetSection(nameof(RabbbitMQSettings)).Get<RabbbitMQSettings>();
+            ServiceSettings? serviceSettings = configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
             services.AddMassTransit(x =>
             {
@@ -26,7 +27,8 @@ namespace Florage.Shared.Configurations
                         c.Password(rabbbitMQSettings.Password);
                     });
 
-                    config.ConfigureEndpoints(ctx);
+                    config.ConfigureEndpoints(ctx, 
+                        new KebabCaseEndpointNameFormatter(serviceSettings.ServiceName, false));
                 });
 
             });
