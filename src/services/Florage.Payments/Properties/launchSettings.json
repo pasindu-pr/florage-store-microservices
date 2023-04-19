@@ -12,7 +12,7 @@
     "Florage.Payments": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "api/payments/docs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
