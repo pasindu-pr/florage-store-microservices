@@ -37,3 +37,11 @@ spec:
                 name: orders-service
                 port:
                   number: 5002
+
+          - path: /api/payments
+            pathType: Prefix
+            backend:
+              service:
+                name: payments-service
+                port:
+                  number: 5003
