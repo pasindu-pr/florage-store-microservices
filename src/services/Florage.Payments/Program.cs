@@ -12,11 +12,19 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
+AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
 
 var app = builder.Build();
- 
-app.UseSwagger();
-app.UseSwaggerUI(); 
+
+app.UseSwagger(c =>
+{
+    c.RouteTemplate = "api/payments/docs/swagger/{documentName}/swagger.json";
+});
+app.UseSwaggerUI(c =>
+{
+    c.RoutePrefix = "api/payments/docs";
+    c.SwaggerEndpoint("/api/payments/docs/swagger/v1/swagger.json", "Florage Payments API");
+});
 
 app.UseHttpsRedirection();
 

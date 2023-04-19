@@ -11,15 +11,20 @@ namespace Florage.Orders.Services
     {
         private readonly IRepository<Order> _repository;
         private readonly IRepository<Product> _productsRepository;
-        private readonly IMapper _mapper; 
+        private readonly IMapper _mapper;
+        private readonly IOrderPublishingService _orderPublishingService;
 
-        public OrderService(IRepository<Order> repository, IRepository<Product> productsRepository, IMapper mapper)
+        public OrderService(IRepository<Order> repository, 
+            IRepository<Product> productsRepository, 
+            IMapper mapper,
+            IOrderPublishingService orderPublishingService)
         {
             _repository = repository;
             _productsRepository = productsRepository;
             _repository.SetCollectionName(Constants.OrdersCollectionName);
             _productsRepository.SetCollectionName(Constants.ProductsCollectionName);
             _mapper = mapper;
+            _orderPublishingService = orderPublishingService;
         } 
 
         public async Task CreateAsync(CreateOrderDto orderDto)
@@ -45,8 +50,9 @@ namespace Florage.Orders.Services
                 Products = orderProducts,
                 TotalPrice = totalPrice
             };
-            
-            await _repository.CreateAsync(order);
+
+            Order createdOrder = await _repository.CreateAsync(order);
+            _orderPublishingService.PublishCreatedOrder(createdOrder);
         }
 
         public async Task<IReadOnlyCollection<GetOrderDto>> GetAllOrdersAsync()

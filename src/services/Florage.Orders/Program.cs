@@ -1,3 +1,4 @@
+using Florage.Orders.AsyncServices.Publishers;
 using Florage.Orders.Contracts;
 using Florage.Orders.Services;
 using Florage.Shared.Configurations;
@@ -10,6 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductService, ProductsService>();
+builder.Services.AddScoped<IOrderPublishingService, OrderPublishingService>();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
 AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
