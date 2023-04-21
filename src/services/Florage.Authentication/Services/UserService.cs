@@ -1,107 +1,43 @@
-﻿using AspNetCore.Identity.Mongo.Model;
-using Florage.Authentication.Contracts;
-using Florage.Authentication.Dtos;
-using Florage.Authentication.Responses;
+﻿using Florage.Authentication.Contracts;
+using Florage.Authentication.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace Florage.Authentication.Services
 {
-    public class UserService : IUserService
+    public class UserService: IUserService
     {
-        private readonly UserManager<MongoUser> _userManager;
-        private readonly SignInManager<MongoUser> _signInManager;
-        private readonly IConfiguration _configuration;
+        private RoleManager<ApplicationRole> _roleManager;
+        private UserManager<ApplicationUser> _userManager;
 
-        public UserService(UserManager<MongoUser> userManager, SignInManager<MongoUser> signInManager, IConfiguration configuration)
+        public UserService(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager)
         {
+            _roleManager = roleManager;
             _userManager = userManager;
-            _signInManager = signInManager;
-            _configuration = configuration;
         }
 
-        public async Task<UserTokenResponse> LoginAsync(UserLoginDto userLoginDto)
+        public async Task<IdentityResult> AddAdminRole()
         {
-            UserTokenResponse userToken;
-                
-            var user = await _userManager.FindByEmailAsync(userLoginDto.Email); 
+
+            ApplicationRole isRoleExists = await _roleManager.FindByNameAsync("Admin");
             
-            if (user != null && await _userManager.CheckPasswordAsync(user, userLoginDto.Password))
+            if (isRoleExists == null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
 
-                var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                };
+                ApplicationRole applicationRole = new ApplicationRole();
+                applicationRole.Name = "admin";
 
-                foreach (var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                } 
 
-                String tokenReponse = new JwtSecurityTokenHandler().WriteToken(GetToken(authClaims));
-                return userToken = new UserTokenResponse { Token = tokenReponse, Success = true };
+                IdentityResult identityResult = await _roleManager.CreateAsync(applicationRole);
+                return identityResult;
             }
 
-            userToken = new UserTokenResponse { Token = null, Success = false, Message = "Email or password is incorrect." };
-            
-            return userToken;
+            return null;
         }
 
-        public async Task<IdentityResult> RegisterAsync(UserRegisterDto userRegisterDto)
+        public async Task<IdentityResult> AddUserToAdminRole(string userId)
         {
-            MongoUser user = new MongoUser(userRegisterDto.Email);
-            user.Email = userRegisterDto.Email;
-            IdentityResult identityResult = await _userManager.CreateAsync(user, userRegisterDto.Password);
+            IdentityResult identityResult = await _userManager.AddToRoleAsync(await _userManager.FindByIdAsync(userId), "Admin");
             return identityResult;
-        }
-        
-        private JwtSecurityToken GetToken(List<Claim> authClaims)
-        {
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
-                claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
-
-            return token;
-        }
-
-        public bool ValidateToken(string token)
-        {
-            if (token == null)
-                return false;
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
-            try
-            {
-                tokenHandler.ValidateToken(token, new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidIssuer = _configuration["Jwt:ValidIssuer"],
-                    ValidateAudience = false,
-                    ValidAudience = _configuration["Jwt:ValidAudience"], 
-                    ClockSkew = TimeSpan.Zero
-                }, out SecurityToken validatedToken); 
-                
-                return true;
-            }
-            catch
-            { 
-                return false;
-            }
         }
     }
 }
