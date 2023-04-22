@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Florage.Orders.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/orders")]
     [ApiController]
     public class OrderController : ControllerBase
     {
