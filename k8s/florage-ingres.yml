@@ -45,3 +45,11 @@ spec:
                 name: payments-service
                 port:
                   number: 5003
+
+          - path: /api/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: authentication-service
+                port:
+                  number: 5004
