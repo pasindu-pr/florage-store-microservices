@@ -1,5 +1,6 @@
 ﻿using Florage.Authentication.Models;
 using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 
 namespace Florage.Authentication.ConfigurationsRegistration
 {
@@ -8,10 +9,10 @@ namespace Florage.Authentication.ConfigurationsRegistration
         public static IServiceCollection ConfigureIdentityServices(this IServiceCollection services, IConfiguration configuration)
         { 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, ObjectId>
                 (
                     configuration.GetConnectionString("DefaultConnection"),
-                    "Auth"
+                    "Users"
                 )
                 .AddDefaultTokenProviders();
 
