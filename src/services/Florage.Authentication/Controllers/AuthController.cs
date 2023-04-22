@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace Florage.Authentication.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]    
     public class AuthController : ControllerBase
     {
 
-        private readonly IUserService _userService;
 
-        public AuthController(IUserService userService)
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = ("admin"))]
+
+        private readonly IAuthService _userService;
+
+        public AuthController(IAuthService userService)
         {
             _userService = userService;
-        } 
+        }
 
         [HttpPost]
         [Route("register")]

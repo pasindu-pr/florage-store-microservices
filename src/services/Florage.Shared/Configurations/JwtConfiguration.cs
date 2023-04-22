@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Florage.Authentication.Configurations
+namespace Florage.Shared.Configurations
 {
     public static class JwtConfiguration
     {
-        public static IServiceCollection JwtConfigurationRegistration(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -20,7 +22,7 @@ namespace Florage.Authentication.Configurations
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
                 };
             });
-            
+
             return services;
         }
     }

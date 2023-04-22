@@ -1,20 +1,19 @@
-﻿using AspNetCore.Identity.Mongo;
-using AspNetCore.Identity.Mongo.Model;
+﻿using Florage.Authentication.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Florage.Authentication.ConfigurationsRegistration
 {
     public static class RegisterIdentity
     {
         public static IServiceCollection ConfigureIdentityServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddIdentityMongoDbProvider<MongoUser, MongoRole>(identity =>
-            {
-                identity.Password.RequiredLength = 8;
-            },
-                mongo =>
-            {
-                mongo.ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            });
+        { 
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+                (
+                    configuration.GetConnectionString("DefaultConnection"),
+                    "Auth"
+                )
+                .AddDefaultTokenProviders();
 
             return services;
         }
