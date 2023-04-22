@@ -1,7 +1,6 @@
 using Florage.Authentication.ConfigurationsRegistration;
 using Florage.Authentication.Contracts;
-using Florage.Authentication.Services;
-using Florage.Authentication.Utils.Scripts;
+using Florage.Authentication.Services; 
 using Florage.Shared.Configurations;
 
 var builder = WebApplication.CreateBuilder(args); 
