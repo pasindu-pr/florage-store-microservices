@@ -14,11 +14,13 @@ namespace Florage.Authentication.Services
     {
         private readonly UserManager<ApplicationUser> _userManager; 
         private readonly IConfiguration _configuration;
+        private readonly IUsersPublishingService _userPublishingService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IUsersPublishingService usersPublishingService)
         {
             _userManager = userManager; 
             _configuration = configuration;
+            _userPublishingService = usersPublishingService;
         }
 
         public async Task<UserTokenResponse> LoginAsync(UserLoginDto userLoginDto)
@@ -56,6 +58,14 @@ namespace Florage.Authentication.Services
             ApplicationUser user = new ApplicationUser(userRegisterDto.Email, userRegisterDto.Email);
      
             IdentityResult identityResult = await _userManager.CreateAsync(user, userRegisterDto.Password);
+
+            if (identityResult.Succeeded)
+            {
+                var createdUser = await _userManager.FindByEmailAsync(user.Email);
+                UserPublishDto userPublishDto = new UserPublishDto { Id = createdUser.Id.ToString(), Email = createdUser.Email, UserName = createdUser.UserName };
+                _userPublishingService.PublishUserCreate(userPublishDto);
+            }
+
             return identityResult;
         }
         
