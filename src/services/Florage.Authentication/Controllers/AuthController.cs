@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Florage.Authentication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]    
     public class AuthController : ControllerBase
     {
@@ -25,8 +25,8 @@ namespace Florage.Authentication.Controllers
         [Route("register")]
         public async Task<ActionResult<IdentityResult>> CreateUser(UserRegisterDto user)
         {
-            IdentityResult identityResult = await _userService.RegisterAsync(user);
-            
+            IdentityResult identityResult = await _userService.RegisterAsync(user); 
+
             if (identityResult.Succeeded)
             {
                 return Ok(identityResult);
