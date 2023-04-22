@@ -1,5 +1,6 @@
 ﻿using Florage.Orders.Contracts;
-using Florage.Orders.Dtos; 
+using Florage.Orders.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Florage.Orders.Controllers
@@ -16,6 +17,7 @@ namespace Florage.Orders.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IReadOnlyCollection<GetOrderDto>>> GetAllAsync()
         {
             IReadOnlyCollection<GetOrderDto> orders = await _orderService.GetAllOrdersAsync();
@@ -23,6 +25,7 @@ namespace Florage.Orders.Controllers
         } 
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> CreateAsync(CreateOrderDto orderDto)
         {
             await _orderService.CreateAsync(orderDto);

@@ -16,6 +16,8 @@ builder.Services.AddScoped<IOrderPublishingService, OrderPublishingService>();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
 AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
+SwaggerAuthorizationConfigurations.AddSwaggerAuth(builder.Services, builder.Configuration);
+JwtConfiguration.AddJwtAuth(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
@@ -31,6 +33,7 @@ app.UseSwaggerUI(c =>
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

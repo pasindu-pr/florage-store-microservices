@@ -21,8 +21,15 @@ JwtConfiguration.AddJwtAuth(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwagger(c =>
+{
+    c.RouteTemplate = "api/auth/docs/swagger/{documentName}/swagger.json";
+});
+app.UseSwaggerUI(c =>
+{
+    c.RoutePrefix = "api/auth/docs";
+    c.SwaggerEndpoint("/api/auth/docs/swagger/v1/swagger.json", "Florage Authentication API");
+});
 
 app.UseHttpsRedirection();
 
