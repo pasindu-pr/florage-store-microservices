@@ -19,8 +19,7 @@ namespace Florage.Payments.Controllers
 
         [HttpPost("webhook")]
         public async Task<IActionResult> Webhook()
-        {
-            Console.WriteLine("Webhook called");
+        { 
             try
             {
                 var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
