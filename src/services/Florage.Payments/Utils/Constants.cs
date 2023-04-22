@@ -4,5 +4,6 @@
     {
         public const string OrdersCollectionName = "Orders";
         public const string PaymentsCollectionName = "Payments";
+        public const string UsersCollectionName = "Users";
     }
 }

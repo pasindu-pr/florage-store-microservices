@@ -1,3 +1,4 @@
+using Florage.Authentication.AsyncMessagingServices;
 using Florage.Authentication.ConfigurationsRegistration;
 using Florage.Authentication.Contracts;
 using Florage.Authentication.Services; 
@@ -7,21 +8,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(); 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(); 
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddTransient<IUserService, UserService>(); 
+builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUsersPublishingService, UsersPublishingService>();
 
+AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
 RegisterIdentity.ConfigureIdentityServices(builder.Services, builder.Configuration);
 SwaggerAuthorizationConfigurations.AddSwaggerAuth(builder.Services, builder.Configuration);
 JwtConfiguration.AddJwtAuth(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
