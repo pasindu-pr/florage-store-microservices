@@ -24,5 +24,11 @@ namespace Florage.Orders.Services
             User insertedUser = await _repository.CreateAsync(user);
             return insertedUser;
         }
+
+        public async Task<User> GetUserById(string id)
+        {
+            User user = await _repository.GetByIdAsync(id);
+            return user; 
+        }
     }
 }

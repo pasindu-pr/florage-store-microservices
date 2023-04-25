@@ -1,8 +1,8 @@
 ﻿namespace Florage.Payments.Dtos
 {
-    public class CreateUserDto
+    public class PublishPaymentCreatedDto
     {
-        public string Id { get; set; } = string.Empty;
+        public string OrderId { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;

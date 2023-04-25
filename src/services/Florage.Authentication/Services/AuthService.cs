@@ -55,7 +55,7 @@ namespace Florage.Authentication.Services
 
         public async Task<IdentityResult> RegisterAsync(UserRegisterDto userRegisterDto)
         {
-            ApplicationUser user = new ApplicationUser(userRegisterDto.Email, userRegisterDto.Email);
+            ApplicationUser user = new ApplicationUser(userRegisterDto.UserName, userRegisterDto.Email);
      
             IdentityResult identityResult = await _userManager.CreateAsync(user, userRegisterDto.Password);
 

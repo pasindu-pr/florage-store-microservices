@@ -13,11 +13,15 @@ namespace Florage.Orders.Services
         private readonly IRepository<Product> _productsRepository;
         private readonly IMapper _mapper;
         private readonly IOrderPublishingService _orderPublishingService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserService _userService;
 
         public OrderService(IRepository<Order> repository, 
             IRepository<Product> productsRepository, 
             IMapper mapper,
-            IOrderPublishingService orderPublishingService)
+            IOrderPublishingService orderPublishingService,
+            IHttpContextAccessor httpContextAccessor,
+            IUserService userService)
         {
             _repository = repository;
             _productsRepository = productsRepository;
@@ -25,12 +29,18 @@ namespace Florage.Orders.Services
             _productsRepository.SetCollectionName(Constants.ProductsCollectionName);
             _mapper = mapper;
             _orderPublishingService = orderPublishingService;
-        } 
-
+            _httpContextAccessor = httpContextAccessor;
+            _userService = userService;
+        }
         public async Task CreateAsync(CreateOrderDto orderDto)
         { 
             List<OrderProduct> orderProducts = new List<OrderProduct>();
             float totalPrice = 0;
+
+
+            string userId = _httpContextAccessor.HttpContext.User.Identity.Name;
+
+            User user = await _userService.GetUserById(userId);
 
             foreach (var orderProductDto in orderDto.Products)
             {
@@ -48,7 +58,8 @@ namespace Florage.Orders.Services
             Order order = new Order
             {
                 Products = orderProducts,
-                TotalPrice = totalPrice
+                TotalPrice = totalPrice,
+                UserId = user.Id,
             };
 
             Order createdOrder = await _repository.CreateAsync(order);

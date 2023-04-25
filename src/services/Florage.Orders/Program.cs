@@ -13,6 +13,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductService, ProductsService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IOrderPublishingService, OrderPublishingService>();
+builder.Services.AddHttpContextAccessor();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
 AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);

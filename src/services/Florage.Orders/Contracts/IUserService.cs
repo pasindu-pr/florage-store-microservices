@@ -6,5 +6,6 @@ namespace Florage.Orders.Contracts
     public interface IUserService
     {
         public Task<User> CreateUser(CreateUserDto createUserDto);
+        public Task<User> GetUserById(string userId);
     }
 }
