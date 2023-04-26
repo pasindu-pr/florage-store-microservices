@@ -1,9 +1,10 @@
-﻿using Florage.Payments.Dtos;
+﻿using Florage.Payments.Contracts;
+using Florage.Shared.Dtos.Payment;
 using MassTransit;
 
 namespace Florage.Payments.AsyncMessagingServices.Publishers
 {
-    public class PaymentPublishingService
+    public class PaymentPublishingService: IPaymentPublishingService
     {
         private readonly IPublishEndpoint _publishEndpoint;
 
