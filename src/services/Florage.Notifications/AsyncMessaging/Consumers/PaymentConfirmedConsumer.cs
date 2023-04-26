@@ -19,7 +19,7 @@ namespace Florage.Notifications.AsyncMessaging.Consumers
         {
             var message = context.Message;
             _emailService.SendOrderNotification(message.UserName, message.OrderId, message.Amount, message.Email);
-            _smsService.SendOrderNotification(message.UserName, message.OrderId, message.Amount, message.PhoneNumber);
+            //_smsService.SendOrderNotification(message.UserName, message.OrderId, message.Amount, message.PhoneNumber);
             return Task.CompletedTask;
         }
     }
