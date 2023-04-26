@@ -24,7 +24,7 @@ namespace Florage.Payments.Controllers
             {
                 var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
                 //var enpointSecret = "whsec_7f178c6838b0aac09181e1c02d01e92c785397bd7e50d58841e24a8c073291e5";
-                var enpointSecret = "we_1N1AkkHJfferNMkthpCvsZ05"; 
+                var enpointSecret = "whsec_VOnL3mAtenBJU2xcmDVvLHpeE0IGYRs3"; 
                 var signatureHeader = Request.Headers["Stripe-Signature"]; 
                 Event stripeEvent = EventUtility.ConstructEvent(json, signatureHeader, enpointSecret);
                 if (stripeEvent.Type == Events.CheckoutSessionCompleted)
