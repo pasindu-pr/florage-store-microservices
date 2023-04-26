@@ -19,14 +19,14 @@ namespace Florage.Notifications.Services
             _configuration = configuration;
         }
         
-        public void SendOrderNotification(string userName, string orderId, float price)
+        public void SendOrderNotification(string userName, string orderId, float price, string phoneNumber)
         { 
 
             var response = _client.SmsClient.SendAnSms(new Vonage.Messaging.SendSmsRequest()
             {
-                To = "94773279388",
+                To = $"94{phoneNumber}",
                 From = "Florage Store",
-                Text = "A text message sent using the Vonage SMS API"
+                Text = $"Your order id {orderId} has been received."
             });
         }
     }

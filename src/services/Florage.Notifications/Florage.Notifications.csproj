@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Communication.Email" Version="1.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Florage.Shared" Version="0.1.32" /> 
     <PackageReference Include="Vonage" Version="6.2.0" />
   </ItemGroup>
 

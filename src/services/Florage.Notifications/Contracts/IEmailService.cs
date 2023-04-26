@@ -2,6 +2,6 @@
 {
     public interface IEmailService
     {
-        void SendOrderNotification(string userName, string orderId, float price);
+        void SendOrderNotification(string userName, string orderId, float price, string userEmail);
     }
 }

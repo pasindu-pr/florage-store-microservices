@@ -26,10 +26,10 @@ namespace Florage.Orders.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> CreateAsync(CreateOrderDto orderDto)
+        public async Task<ActionResult<GetCreatedOrderDto>> CreateAsync(CreateOrderDto orderDto)
         {
-            await _orderService.CreateAsync(orderDto);
-            return Ok();
+            GetCreatedOrderDto getCreatedOrderDto = await _orderService.CreateAsync(orderDto);
+            return new ObjectResult(getCreatedOrderDto) { StatusCode = 201 };
         }
 
         [HttpPatch]

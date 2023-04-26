@@ -20,9 +20,10 @@ namespace Florage.Orders.Profiles
             CreateMap<Product, PublishProductCreateDto>().ReverseMap();
             CreateMap<CreateProductDto, PublishProductCreateDto>().ReverseMap();
             CreateMap<UpdateProductDto, PublishProductUpdateDto>().ReverseMap();
-            CreateMap<Order, PublishCreateOrderDto>().ReverseMap();
+            CreateMap<Order, PublishCreateOrderDto>().ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.User.Id)).ReverseMap();
             CreateMap<User, CreateUserDto>().ReverseMap();
             CreateMap<CreateUserDto, PublishUserCreateDto>().ReverseMap();
+            CreateMap<Order, GetCreatedOrderDto>().ReverseMap();
         }
     }
 }

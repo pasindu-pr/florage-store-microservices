@@ -32,7 +32,7 @@ namespace Florage.Orders.Services
             _httpContextAccessor = httpContextAccessor;
             _userService = userService;
         }
-        public async Task CreateAsync(CreateOrderDto orderDto)
+        public async Task<GetCreatedOrderDto> CreateAsync(CreateOrderDto orderDto)
         { 
             List<OrderProduct> orderProducts = new List<OrderProduct>();
             float totalPrice = 0;
@@ -59,11 +59,14 @@ namespace Florage.Orders.Services
             {
                 Products = orderProducts,
                 TotalPrice = totalPrice,
-                UserId = user,
+                User = user,
             };
 
             Order createdOrder = await _repository.CreateAsync(order);
             _orderPublishingService.PublishCreatedOrder(createdOrder);
+            
+            GetCreatedOrderDto createdOrderDto = new GetCreatedOrderDto { Id=createdOrder.Id };
+            return createdOrderDto;
         }
 
         public async Task<IReadOnlyCollection<GetOrderDto>> GetAllOrdersAsync()

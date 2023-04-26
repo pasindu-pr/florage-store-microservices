@@ -1,4 +1,5 @@
 ﻿using Florage.Payments.Dtos;
+using Florage.Payments.Models;
 
 namespace Florage.Payments.Contracts
 {
@@ -6,5 +7,6 @@ namespace Florage.Payments.Contracts
     {
         Task CreateOrderAsync(CreateOrderDto orderDto);
         Task<IReadOnlyCollection<GetOrderDto>> GetOrdersAsync();
+        Task<Order> GetOrderById(string id);
     }
 }

@@ -27,10 +27,13 @@ namespace Florage.Payments.Services
         public async Task CreatePaymentAsync(Event @event)
         {
             var paymentInfomation = @event.Data.Object as Stripe.Checkout.Session;
-           
+
             string orderId = paymentInfomation.Metadata["orderId"];
 
+            //string orderId = "6449409b682777eb2d65a0d7";
+
             Order order = await _orderRepository.GetByIdAsync(orderId);
+         
 
             if (order != null)
             {
@@ -54,6 +57,8 @@ namespace Florage.Payments.Services
                 OrderId = orderId,
                 UserName = order.User.UserName,
                 Email = order.User.Email, 
+                Amount = order.TotalPrice,
+                PhoneNumber = order.User.PhoneNumber
             };
 
             await _paymentPublishingService.PublishPaymentCreatedEvent(paymentCreatedDto);
