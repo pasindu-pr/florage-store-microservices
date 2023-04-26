@@ -11,17 +11,26 @@ namespace Florage.Payments.Services
     {
         private readonly IRepository<Order> _repository;
         private readonly IMapper _mapper;
+        private readonly IUserService _userService;
 
-        public OrderService(IRepository<Order> repository, IMapper mapper)
+        public OrderService(IRepository<Order> repository, IMapper mapper, IUserService userService)
         {
             _repository = repository;
             _repository.SetCollectionName(Constants.OrdersCollectionName);
             _mapper = mapper;
+            _userService = userService;
         }
         
         public async Task CreateOrderAsync(CreateOrderDto orderDto)
         {
-            Order order = _mapper.Map<Order>(orderDto);
+            User user = await _userService.GetUserById(orderDto.UserId);
+
+            Order order = new Order
+            {
+                Id = orderDto.Id,
+                User = user,
+                TotalPrice = orderDto.TotalPrice, 
+            };
             await _repository.CreateAsync(order);
         }
 
