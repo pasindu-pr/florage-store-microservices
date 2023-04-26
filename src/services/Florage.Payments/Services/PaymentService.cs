@@ -11,7 +11,7 @@ namespace Florage.Payments.Services
     {
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<Payment> _paymentRepository;
-        private readonly IPaymentPublishingService _paymentPublishingService;
+        private readonly IPaymentPublishingService _paymentPublishingService; 
 
         public PaymentService(IRepository<Order> repository, IRepository<Payment> paymentRepository, IPaymentPublishingService paymentPublishingService)
         {
@@ -47,7 +47,8 @@ namespace Florage.Payments.Services
                 Amount = (long)paymentInfomation.AmountTotal,
                 Status = nameof(PaymentStatus.Paid),
                 PaymentMethod = paymentInfomation.PaymentMethodTypes.FirstOrDefault(),
-                PaymentReferenceId = paymentInfomation.Id
+                PaymentReferenceId = paymentInfomation.Id,
+                User = order.User
             };
 
             await _paymentRepository.CreateAsync(payment);
