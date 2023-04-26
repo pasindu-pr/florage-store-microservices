@@ -2,6 +2,7 @@
 using Florage.Payments.Models;
 using Florage.Payments.Utils;
 using Florage.Shared.Contracts;
+using Florage.Shared.Dtos.Payment;
 using Stripe;
 
 namespace Florage.Payments.Services
@@ -10,14 +11,17 @@ namespace Florage.Payments.Services
     {
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<Payment> _paymentRepository;
+        private readonly IPaymentPublishingService _paymentPublishingService;
 
-        public PaymentService(IRepository<Order> repository, IRepository<Payment> paymentRepository)
+        public PaymentService(IRepository<Order> repository, IRepository<Payment> paymentRepository, IPaymentPublishingService paymentPublishingService)
         {
             _orderRepository = repository;
             _orderRepository.SetCollectionName(Constants.OrdersCollectionName);
 
             _paymentRepository = paymentRepository;
             _paymentRepository.SetCollectionName(Constants.PaymentsCollectionName);
+
+            _paymentPublishingService = paymentPublishingService;
         }
 
         public async Task CreatePaymentAsync(Event @event)
@@ -44,6 +48,15 @@ namespace Florage.Payments.Services
             };
 
             await _paymentRepository.CreateAsync(payment);
+
+            PublishPaymentCreatedDto paymentCreatedDto = new PublishPaymentCreatedDto
+            {
+                OrderId = orderId,
+                UserName = order.User.UserName,
+                Email = order.User.Email, 
+            };
+
+            await _paymentPublishingService.PublishPaymentCreatedEvent(paymentCreatedDto);
         }
     }
 }

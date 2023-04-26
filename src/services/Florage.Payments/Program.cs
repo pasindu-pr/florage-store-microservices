@@ -1,3 +1,4 @@
+using Florage.Payments.AsyncMessagingServices.Publishers;
 using Florage.Payments.Contracts;
 using Florage.Payments.Services;
 using Florage.Shared.Configurations;
@@ -11,6 +12,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPaymentPublishingService, PaymentPublishingService>();
 
 PersistanceConfigurations.AddMongoDb(builder.Services);
 AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
