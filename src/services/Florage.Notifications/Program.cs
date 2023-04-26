@@ -1,5 +1,6 @@
 using Florage.Notifications.Contracts;
 using Florage.Notifications.Services;
+using Florage.Shared.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ISmsService, SmsService>();
+
+AsyncMessagingConfigurations.AddRabbitMq(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 

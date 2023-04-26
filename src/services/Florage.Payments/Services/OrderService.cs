@@ -30,6 +30,7 @@ namespace Florage.Payments.Services
                 Id = orderDto.Id,
                 User = user,
                 TotalPrice = orderDto.TotalPrice, 
+                Status = nameof(PaymentStatus.Pending)
             };
             await _repository.CreateAsync(order);
         }
@@ -39,6 +40,12 @@ namespace Florage.Payments.Services
             IReadOnlyCollection<Order> orders = await _repository.GetAllAsync();
             IReadOnlyCollection<GetOrderDto> mappedOrders = _mapper.Map<IReadOnlyCollection<GetOrderDto>>(orders);
             return mappedOrders;
+        }
+
+        public async Task<Order> GetOrderById(string id)
+        {
+            Order order = await _repository.GetByIdAsync(id);
+            return order;
         }
     }
 }

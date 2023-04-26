@@ -17,7 +17,7 @@ namespace Florage.Notifications.Services
             _logger = logger;
         }    
 
-        public void SendOrderNotification(string userName, string orderId, float price)
+        public void SendOrderNotification(string userName, string orderId, float price, string userEmail)
         {
             EmailSettings mailSettings = _configuration.GetSection("EmailSettings").Get<EmailSettings>(); ;
             var client = new EmailClient(mailSettings.ConnectionString);
@@ -27,9 +27,10 @@ namespace Florage.Notifications.Services
                 var emailSendOperation = client.Send(
                     wait: WaitUntil.Completed,
                     senderAddress: "billing@f34ddddc-71f2-4111-bac2-ae18bafa8444.azurecomm.net",
-                    recipientAddress: "pasinduprabashitha@gmail.com",
-                    subject: "This is the subject",
-                    htmlContent: "<html><body>This is the html body</body></html>");
+                    recipientAddress: userEmail,
+                    subject: "Order Confirmation",
+                    htmlContent: $"<html><body> Hi {userName}, We have recieved your order. Thanks for ordering. Your" +
+                    $"order id is {orderId}. The value of your order is {price}.</body></html>");
 
                 _logger.LogInformation($"Email Sent. Status = {emailSendOperation.Value.Status}");
 

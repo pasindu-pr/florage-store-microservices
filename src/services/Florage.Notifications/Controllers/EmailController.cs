@@ -19,16 +19,8 @@ namespace Florage.Notifications.Controllers
         [HttpGet("mail")]
         public IActionResult SendEmail()
         {
-            _emailService.SendOrderNotification("Pasindu", "123", 1000.00f);
+           // _emailService.SendOrderNotification("Pasindu", "123", 1000.00f);
             return Ok();
-        }
-
-
-        [HttpGet("sms")]
-        public IActionResult SendSms()
-        {
-            _smsService.SendOrderNotification("Pasindu", "123", 1000.00f);
-            return Ok();
-        }
+        } 
     }
 }

@@ -56,13 +56,14 @@ namespace Florage.Authentication.Services
         public async Task<IdentityResult> RegisterAsync(UserRegisterDto userRegisterDto)
         {
             ApplicationUser user = new ApplicationUser(userRegisterDto.UserName, userRegisterDto.Email);
-     
+            user.PhoneNumber = userRegisterDto.PhoneNumber;
+
             IdentityResult identityResult = await _userManager.CreateAsync(user, userRegisterDto.Password);
 
             if (identityResult.Succeeded)
             {
                 var createdUser = await _userManager.FindByEmailAsync(user.Email);
-                UserPublishDto userPublishDto = new UserPublishDto { Id = createdUser.Id.ToString(), Email = createdUser.Email, UserName = createdUser.UserName };
+                UserPublishDto userPublishDto = new UserPublishDto { Id = createdUser.Id.ToString(), Email = createdUser.Email, UserName = createdUser.UserName, PhoneNumber = createdUser.PhoneNumber };
                 _userPublishingService.PublishUserCreate(userPublishDto);
             }
 

@@ -21,6 +21,7 @@ namespace Florage.Orders.Services
         public async Task<User> CreateUser(CreateUserDto createUserDto)
         {
             User user = _mapper.Map<User>(createUserDto);
+            user.PhoneNumber = createUserDto.PhoneNumber;
             User insertedUser = await _repository.CreateAsync(user);
             return insertedUser;
         }
