@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authentication-service
+  name: notifications-service
   namespace: florage
   labels:
-    app: authentication-service
+    app: notifications-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: authentication-service
+      app: notifications-service
   template:
     metadata:
       labels:
-        app: authentication-service
+        app: notifications-service
     spec:
       containers:
-        - name: authentication-service
-          image: ghcr.io/pasinduprabhashitha/florage-authentication-service:master
+        - name: notifications-service
+          image: ghcr.io/pasinduprabhashitha/florage-notifications-service:master
           imagePullPolicy: Always
           ports:
             - containerPort: 80
           env:
-            - name: ConnectionStrings__DefaultConnection
+            - name: DatabaseSettings__ConnectionString
               valueFrom:
                 secretKeyRef:
                   name: db-connection-secret
@@ -34,13 +34,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: authentication-service
+  name: notifications-service
   namespace: florage
 spec:
   selector:
-    app: authentication-service
+    app: notifications-service
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 5004
+      port: 5005
       targetPort: 80
