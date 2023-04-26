@@ -59,7 +59,7 @@ namespace Florage.Orders.Services
             {
                 Products = orderProducts,
                 TotalPrice = totalPrice,
-                UserId = user.Id,
+                UserId = user,
             };
 
             Order createdOrder = await _repository.CreateAsync(order);
