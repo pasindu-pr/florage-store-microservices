@@ -28,9 +28,7 @@ namespace Florage.Payments.Services
         {
             var paymentInfomation = @event.Data.Object as Stripe.Checkout.Session;
 
-            string orderId = paymentInfomation.Metadata["orderId"];
-
-            //string orderId = "6449409b682777eb2d65a0d7";
+            string orderId = paymentInfomation.Metadata["orderId"]; 
 
             Order order = await _orderRepository.GetByIdAsync(orderId);
          
