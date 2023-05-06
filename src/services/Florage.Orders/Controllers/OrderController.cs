@@ -30,19 +30,6 @@ namespace Florage.Orders.Controllers
         {
             GetCreatedOrderDto getCreatedOrderDto = await _orderService.CreateAsync(orderDto);
             return new ObjectResult(getCreatedOrderDto) { StatusCode = 201 };
-        }
-
-        [HttpPatch]
-        public async Task<ActionResult> UpdatePaymentAsync(string orderId)
-        {
-            try
-            {
-                await _orderService.SetOrderAsPaidAsync(orderId);
-                return Ok();
-            }catch(KeyNotFoundException)
-            {
-                return NotFound();
-            }
-        }
+        } 
     }
 }
