@@ -44,3 +44,5 @@ jobs:
           file: ./src/services/Florage.Orders/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            SHARED_PACKAGE_TOKEN=${{ secrets.SHARED_PACKAGE_TOKEN }} 
