@@ -14,7 +14,7 @@ env:
 
 jobs:
   build-and-push-image:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -34,16 +34,15 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}           
-        
-      - uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build & push Docker image
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          image: pasinduprabhashitha/florage-orders-service
-          tags: master
-          dockerfile: ./src/services/Florage.Orders/Dockerfile
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          buildArgs: |
+          context: .
+          push: true
+          file: ./src/services/Florage.Orders/Dockerfile
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
             SHARED_PACKAGE_TOKEN=${{ secrets.SHARED_PACKAGE_TOKEN }} 
