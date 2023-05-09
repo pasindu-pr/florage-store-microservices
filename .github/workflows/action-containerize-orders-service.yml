@@ -39,7 +39,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-          image: repo/image
+          image: pasinduprabhashitha/florage-orders-service
           tags: master
           dockerfile: ./src/services/Florage.Orders/Dockerfile
           registry: ${{ env.REGISTRY }}
