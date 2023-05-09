@@ -3,8 +3,6 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-ARG SHARED_PACKAGE_TOKEN
-
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["./src/services/Florage.Orders/Florage.Orders.csproj", "."]
