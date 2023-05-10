@@ -9,7 +9,7 @@ RUN echo $SHARED_PACKAGE_TOKEN
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["./src/services/Florage.Orders/Florage.Orders.csproj", "."]
-RUN echo 'dotnet nuget add source "https://nuget.pkg.github.com/PasinduPrabhashitha/index.json" --name "githubfeed" --username "PasinduPrabhashitha" --password $SHARED_PACKAGE_TOKEN --store-password-in-clear-text'
+RUN echo 'dotnet nuget add source "https://nuget.pkg.github.com/PasinduPrabhashitha/index.json" --name "githubfeed" --username "PasinduPrabhashitha" --password %SHARED_PACKAGE_TOKEN% --store-password-in-clear-text'
 RUN dotnet restore "./Florage.Orders.csproj"
 COPY ./src/services/Florage.Orders/. .
 WORKDIR "/src/."
