@@ -76,14 +76,25 @@ namespace Florage.Orders.Services
             return getOrders;
         }
 
-        public async Task SetOrderAsPaidAsync(string orderId)
+        public async Task SetOrderAsApprovedAsync(string orderId)
         {
             Order order = await _repository.GetByIdAsync(orderId);
 
             if (order == null)
                 throw new KeyNotFoundException();
 
-            order.Status = nameof(OrderStatus.Processing);
+            order.Status = nameof(OrderStatus.Approved);
+            await _repository.UpdateAsync(orderId, order);
+        }
+
+        public async Task SetOrderAsPaidAsync(string orderId)
+        {
+            Order order = await _repository.GetByIdAsync(orderId);
+
+            if (order == null)
+                throw new KeyNotFoundException();
+            
+            order.Status = nameof(OrderStatus.Paid);
             await _repository.UpdateAsync(orderId, order);
         }
     }

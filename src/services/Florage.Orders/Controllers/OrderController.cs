@@ -30,6 +30,14 @@ namespace Florage.Orders.Controllers
         {
             GetCreatedOrderDto getCreatedOrderDto = await _orderService.CreateAsync(orderDto);
             return new ObjectResult(getCreatedOrderDto) { StatusCode = 201 };
-        } 
+        }
+        
+        [HttpPost("approved")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<GetCreatedOrderDto>> ApproveOrderAsync(string orderId)
+        {
+            await _orderService.SetOrderAsApprovedAsync(orderId);
+            return Ok();
+        }
     }
 }

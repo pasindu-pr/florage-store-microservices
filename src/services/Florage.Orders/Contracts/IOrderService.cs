@@ -6,6 +6,7 @@ namespace Florage.Orders.Contracts
     {
         Task<GetCreatedOrderDto> CreateAsync(CreateOrderDto orderDto);
         Task<IReadOnlyCollection<GetOrderDto>> GetAllOrdersAsync();
-        Task SetOrderAsPaidAsync(string orderId);        
+        Task SetOrderAsPaidAsync(string orderId);
+        Task SetOrderAsApprovedAsync(string orderId);
     }
 }

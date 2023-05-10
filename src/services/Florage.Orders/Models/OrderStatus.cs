@@ -6,6 +6,8 @@
         Processing,
         Shipped,
         Delivered,
-        Cancelled
+        Cancelled,
+        Approved,
+        Paid
     }
 }
