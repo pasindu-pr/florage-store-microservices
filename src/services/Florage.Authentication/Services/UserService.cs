@@ -63,7 +63,7 @@ namespace Florage.Authentication.Services
         public async Task<IdentityResult> SeedRolesAndUsers()
         {
             await AddRequiredRoles();
-            UserRegisterDto defaultUser = new UserRegisterDto { Email = "admin@florage.com", Password = "Ss$iNhCb3FWwB8Dz%zwTg!PS" };
+            UserRegisterDto defaultUser = new UserRegisterDto { UserName="FlorageAdmin", Email = "admin@florage.com", Password = "Ss$iNhCb3FWwB8Dz%zwTg!PS", PhoneNumber="772345677" };
 
             IdentityResult identityResult = await _authService.RegisterAsync(defaultUser);
 
