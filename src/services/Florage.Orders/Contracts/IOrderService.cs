@@ -8,5 +8,6 @@ namespace Florage.Orders.Contracts
         Task<IReadOnlyCollection<GetOrderDto>> GetAllOrdersAsync();
         Task SetOrderAsPaidAsync(string orderId);
         Task SetOrderAsApprovedAsync(string orderId);
+        Task CalculateAndSaveCommisionAsync(string orderId);
     }
 }

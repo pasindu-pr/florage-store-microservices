@@ -15,14 +15,16 @@ namespace Florage.Orders.Services
         private readonly IOrderPublishingService _orderPublishingService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserService _userService;
+        private readonly IOrderCommisionService _orderCommisionService;
 
         public OrderService(IRepository<Order> repository, 
             IRepository<Product> productsRepository, 
             IMapper mapper,
             IOrderPublishingService orderPublishingService,
             IHttpContextAccessor httpContextAccessor,
-            IUserService userService)
-        {
+            IUserService userService,
+            IOrderCommisionService orderCommisionService
+        ){
             _repository = repository;
             _productsRepository = productsRepository;
             _repository.SetCollectionName(Constants.OrdersCollectionName);
@@ -31,6 +33,7 @@ namespace Florage.Orders.Services
             _orderPublishingService = orderPublishingService;
             _httpContextAccessor = httpContextAccessor;
             _userService = userService;
+            _orderCommisionService = orderCommisionService;
         }
         public async Task<GetCreatedOrderDto> CreateAsync(CreateOrderDto orderDto)
         { 
@@ -98,15 +101,29 @@ namespace Florage.Orders.Services
             await _repository.UpdateAsync(orderId, order);
         }
 
-        public async Task SetOrderAsRejectedAsync(string orderId)
+        public async Task CalculateAndSaveCommisionAsync(string orderId)
         {
             Order order = await _repository.GetByIdAsync(orderId);
+            double commision = CalculateCommision(order);
 
-            if (order == null)
-                throw new KeyNotFoundException();
+            OrderCommisions orderCommisions = new OrderCommisions
+            {
+                OrderId = orderId,
+                Commision = commision,
+                UserId = order.User.Id
+            };
 
-            order.Status = nameof(OrderStatus.Rejected);
-            await _repository.UpdateAsync(orderId, order);
+            await _orderCommisionService.CreateAsync(orderCommisions);
         }
+
+        private double CalculateCommision(Order order)
+        {
+            double commision = 0;
+            foreach (var orderProduct in order.Products)
+            {
+                commision += orderProduct.Product.Price - orderProduct.Product.BuyPrice;
+            }
+            return commision;
+        }   
     }
 }
