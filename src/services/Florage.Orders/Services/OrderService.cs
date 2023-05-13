@@ -97,5 +97,16 @@ namespace Florage.Orders.Services
             order.Status = nameof(OrderStatus.Paid);
             await _repository.UpdateAsync(orderId, order);
         }
+
+        public async Task SetOrderAsRejectedAsync(string orderId)
+        {
+            Order order = await _repository.GetByIdAsync(orderId);
+
+            if (order == null)
+                throw new KeyNotFoundException();
+
+            order.Status = nameof(OrderStatus.Rejected);
+            await _repository.UpdateAsync(orderId, order);
+        }
     }
 }
