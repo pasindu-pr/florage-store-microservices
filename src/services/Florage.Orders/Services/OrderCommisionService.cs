@@ -1,10 +1,11 @@
-﻿using Florage.Orders.Models;
+﻿using Florage.Orders.Contracts;
+using Florage.Orders.Models;
 using Florage.Orders.Utils;
 using Florage.Shared.Contracts;
 
 namespace Florage.Orders.Services
 {
-    public class OrderCommisionService
+    public class OrderCommisionService : IOrderCommisionService
     {
         private readonly IRepository<OrderCommisions> _repository;
 
@@ -29,6 +30,6 @@ namespace Florage.Orders.Services
         {
             IReadOnlyCollection<OrderCommisions> orderCommisions = await _repository.GetAllAsync();
             return orderCommisions;
-        } 
+        }
     }
 }

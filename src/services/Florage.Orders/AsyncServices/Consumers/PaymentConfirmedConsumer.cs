@@ -17,6 +17,7 @@ namespace Florage.Orders.AsyncServices.Consumers
         public async Task Consume(ConsumeContext<PublishPaymentCreatedDto> context)
         {
             await _orderService.SetOrderAsPaidAsync(context.Message.OrderId);
+            await _orderService.CalculateAndSaveCommisionAsync(context.Message.OrderId);
         }
     }
 }

@@ -8,5 +8,6 @@ namespace Florage.Orders.Models
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
         public float Price { get; set; }
+        public double BuyPrice { get; set; }
     }
 }
