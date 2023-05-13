@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["./src/services/Florage.Inventory/Florage.Inventory.csproj", "."]
-RUN dotnet nuget add source "https://nuget.pkg.github.com/PasinduPrabhashitha/index.json" --name "githubfeed" --username "PasinduPrabhashitha" --password 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 --store-password-in-clear-text
+RUN dotnet nuget add source "https://nuget.pkg.github.com/PasinduPrabhashitha/index.json" --name "githubfeed" --username "PasinduPrabhashitha" --password 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 --store-password-in-clear-text
 RUN dotnet restore "./Florage.Inventory.csproj"
 COPY ./src/services/Florage.Inventory/. .
 WORKDIR "/src/."
