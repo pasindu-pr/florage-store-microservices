@@ -1,8 +1,9 @@
-﻿namespace Florage.Orders.Models
+﻿using Florage.Shared.Models;
+
+namespace Florage.Orders.Models
 {
-    public class OrderCommisions
-    {
-        public string Id { get; set; }
+    public class OrderCommisions: BaseEntity
+    { 
         public string OrderId { get; set; }
         public string UserId { get; set; }
         public double Commision { get; set; }

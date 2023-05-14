@@ -24,6 +24,7 @@ namespace Florage.Orders.Profiles
             CreateMap<User, CreateUserDto>().ReverseMap();
             CreateMap<CreateUserDto, PublishUserCreateDto>().ReverseMap();
             CreateMap<Order, GetCreatedOrderDto>().ReverseMap();
+            CreateMap<OrderCommisions, GetOrderCommisionDto>().ReverseMap();
         }
     }
 }
