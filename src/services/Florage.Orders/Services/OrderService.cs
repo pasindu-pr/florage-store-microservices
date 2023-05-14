@@ -125,6 +125,13 @@ namespace Florage.Orders.Services
                 commision += commisionFromProduct;
             }
             return commision;
-        }   
+        }
+
+        public async Task<IReadOnlyCollection<GetOrderDto>> GetCurrentUsersOrdersAsync()
+        {
+            var userId = _httpContextAccessor.HttpContext.User.Identity.Name;
+            IReadOnlyCollection<GetOrderDto> orders =  _mapper.Map<IReadOnlyCollection<GetOrderDto>>(await _repository.FilterAsync(order => order.User.Id == userId));
+            return orders;
+        }
     }
 }
