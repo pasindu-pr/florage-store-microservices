@@ -16,6 +16,14 @@ namespace Florage.Orders.Controllers
             _orderService = orderService;
         }
 
+        [HttpGet("current-user")]
+        [Authorize]
+        public async Task<ActionResult<IReadOnlyCollection<GetOrderDto>>> GetCurrentUsersOrders()
+        {
+            IReadOnlyCollection<GetOrderDto> orders = await _orderService.GetCurrentUsersOrdersAsync();
+            return Ok(orders);
+        }
+        
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IReadOnlyCollection<GetOrderDto>>> GetAllAsync()
