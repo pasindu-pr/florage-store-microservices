@@ -121,7 +121,8 @@ namespace Florage.Orders.Services
             double commision = 0;
             foreach (var orderProduct in order.Products)
             {
-                commision += orderProduct.Product.Price - orderProduct.Product.BuyPrice;
+                var commisionFromProduct = orderProduct.Product.Price - orderProduct.Product.BuyPrice;
+                commision += commisionFromProduct;
             }
             return commision;
         }   
