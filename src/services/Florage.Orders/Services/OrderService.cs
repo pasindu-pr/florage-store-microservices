@@ -130,7 +130,10 @@ namespace Florage.Orders.Services
         public async Task<IReadOnlyCollection<GetOrderDto>> GetCurrentUsersOrdersAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.Identity.Name;
-            IReadOnlyCollection<GetOrderDto> orders =  _mapper.Map<IReadOnlyCollection<GetOrderDto>>(await _repository.FilterAsync(order => order.User.Id == userId));
+
+            IReadOnlyCollection<Order> currentUserOrders = await _repository.GetAllAsync(order => order.User.Id == userId);
+
+            IReadOnlyCollection<GetOrderDto> orders =  _mapper.Map<IReadOnlyCollection<GetOrderDto>>(currentUserOrders);
             return orders;
         }
     }
