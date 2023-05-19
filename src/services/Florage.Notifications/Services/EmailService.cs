@@ -56,7 +56,7 @@ namespace Florage.Notifications.Services
                     senderAddress: "billing@f34ddddc-71f2-4111-bac2-ae18bafa8444.azurecomm.net",
                     recipientAddress: userEmail,
                     subject: "Account Created",
-                    htmlContent: $"<html><body> Hi {userName}, Your account was created successfully.</body></html>");
+                    htmlContent: $"<html><body> Hi {userName}, Your account was created successfully on our platform with this email. Keep shopping! </body></html>");
 
                 _logger.LogInformation($"Email Sent. Status = {emailSendOperation.Value.Status}");
 
