@@ -53,7 +53,7 @@ namespace Florage.Notifications.Services
             {
                 var emailSendOperation = client.Send(
                     wait: WaitUntil.Completed,
-                    senderAddress: "notifications@f34ddddc-71f2-4111-bac2-ae18bafa8444.azurecomm.net",
+                    senderAddress: "billing@f34ddddc-71f2-4111-bac2-ae18bafa8444.azurecomm.net",
                     recipientAddress: userEmail,
                     subject: "Account Created",
                     htmlContent: $"<html><body> Hi {userName}, Your account was created successfully.</body></html>");
