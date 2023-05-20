@@ -9,8 +9,8 @@ namespace Florage.Notifications.Services
         private readonly VonageClient _client;
         private readonly IConfiguration _configuration;
         private Credentials credentials = Credentials.FromApiKeyAndSecret(
-                    "5330883a",
-                    "cteW8eTUQEQrNzb9"
+                    "53af4316",
+                    "vjwfaOxBfg1xMoqG"
                     );
 
         public SmsService(IConfiguration configuration)
